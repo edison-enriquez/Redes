@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Page not found - redes</title>
+        <title>Page not found - Switching, Routing, y Wireless Essentials</title>
         <base href="/">
 
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item "><a href="homepage.html">Example blog - Home</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="blogs/example.html">First Ecample blog Post</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item "><a href="homepage.html">Nwtworking - Home</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="Networking/introduction.html">Configuración básica de dispositivos</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="Networking/basic_Config_of_switch.html">Configuración de parámetros iniciales de un switch</a></li></ol></li><li class="chapter-item "><a href="Networking/switching/introduction.html">Conceptos de switching</a></li><li class="chapter-item "><a href="Networking/VLAN/introduction.html">VLANs</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -142,7 +142,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">redes</h1>
+                    <h1 class="menu-title">Switching, Routing, y Wireless Essentials</h1>
 
                     <div class="right-buttons">
 
@@ -191,6 +191,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
