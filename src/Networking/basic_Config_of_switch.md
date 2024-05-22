@@ -1,18 +1,19 @@
 # Configuración de parámetros iniciales de un switch
 
-## Secuencia de arranque de un switch
-
+## 1. Secuencia de arranque de un switch
+</br>
 Antes de poder configurar un switch, debe encenderlo y permitirle pasar por la secuencia de arranque de cinco pasos. En este tema se tratan los conceptos básicos de la configuración de un switch e incluye un laboratorio.
-
+</br></br>
 Después de encender un switch Cisco, pasa por la siguiente secuencia de inicio de cinco pasos:
+</br></br>
 
-- Paso 1: Primero, el switch carga un programa de autodiagnóstico al encender (POST) almacenado en la memoria ROM. El POST verifica el subsistema de la CPU. Este comprueba la CPU, la memoria DRAM y la parte del dispositivo flash que integra el sistema de archivos flash.
-- Paso 2: A continuación, el switch carga el software del cargador de arranque. El cargador de arranque es un pequeño programa almacenado en la memoria ROM que se ejecuta inmediatamente después de que el POST se completa correctamente.
-- Paso 3: El cargador de arranque lleva a cabo la inicialización de la CPU de bajo nivel. Inicializa los registros de la CPU, que controlan dónde está asignada la memoria física, la cantidad de memoria y su velocidad.
-- Paso 4: El cargador de arranque inicia el sistema de archivos flash en la placa del sistema.
-- Paso 5: Por último, el cargador de arranque localiza y carga una imagen de software del sistema operativo de IOS en la memoria y delega el control del switch a IOS.
+- **Paso 1**: Primero, el switch carga un programa de autodiagnóstico al encender (POST) almacenado en la memoria ROM. El POST verifica el subsistema de la CPU. Este comprueba la CPU, la memoria DRAM y la parte del dispositivo flash que integra el sistema de archivos flash.
+- **Paso 2**: A continuación, el switch carga el software del cargador de arranque. El cargador de arranque es un pequeño programa almacenado en la memoria ROM que se ejecuta inmediatamente después de que el POST se completa correctamente.
+- **Paso 3**: El cargador de arranque lleva a cabo la inicialización de la CPU de bajo nivel. Inicializa los registros de la CPU, que controlan dónde está asignada la memoria física, la cantidad de memoria y su velocidad.
+- **Paso 4**: El cargador de arranque inicia el sistema de archivos flash en la placa del sistema.
+- **Paso 5**: Por último, el cargador de arranque localiza y carga una imagen de software del sistema operativo de IOS en la memoria y delega el control del switch a IOS.
 
-### El comando boot system
+### 2. El comando boot system
 
 Después de encender un switch Cisco, pasa por la siguiente secuencia de inicio de cinco pasos: Si no se establece esta variable, el switch intenta cargar y ejecutar el primer archivo ejecutable que puede encontrar. En los switches de la serie Catalyst 2960, el archivo de imagen generalmente se encuentra en un directorio que tiene el mismo nombre que el archivo de imagen (excepto la extensión de archivo .bin).
 
@@ -21,10 +22,13 @@ El sistema operativo IOS luego inicializa las interfaces utilizando los comandos
 En el ejemplo, la variable de entorno BOOT se establece mediante el boot system comando del modo de configuración global. Observe que el IOS se ubica en una carpeta distinta y que se especifica la ruta de la carpeta. Use el comando show boot para ver en qué está configurado el archivo de arranque IOS actual.
 
 ```shell
-S1(config)# boot system flash:/c2960-lanbasek9-mz.150-2.SE/c2960-lanbasek9-mz.150-2.SE.bin
+S1(config)# boot system flash:/c2960-lanbasek9-mz.150-2.SE/ \
+                        c2960-lanbasek9-mz.150-2.SE.bin
 ```
 
-La tabla define cada parte del comando **boot system**.
+La tabla define cada parte del comando **`boot system`**.
+
+</br>
 
 | Comando                             | Definición                     |
 | ----------------------------------- | ------------------------------ |
@@ -32,13 +36,15 @@ La tabla define cada parte del comando **boot system**.
 | **flash:**                          | The storage device             |
 | **c2960-lanbasek9-mz.150-2.SE/**    | La ruta al sistema de archivos |
 | **c2960-lanbasek9-mz.150-2.SE.bin** | El nombre del archivo IOS      |
-## Indicadores LED del switch
+
+## 3. Indicadores LED del switch
 
 Los switches Cisco Catalyst tienen varios indicadores luminosos LED de estado. Puede usar los LED del switch para controlar rápidamente la actividad y el rendimiento del switch. Los diferentes modelos y conjuntos de características de los switches tienen diferentes LED, y la ubicación de estos en el panel frontal del switch también puede variar.
 
 En la ilustración, se muestran los LED y el botón Mode de un switch Cisco Catalyst 2960.
+<br>
 
-![[Pasted image 20240510152917.png]]
+<img src="https://i.ibb.co/hmY3yFq/Pasted-image-20240510152917.png" alt="Pasted-image-20240510152917" border="0">
 
 El botón Modo (7 en la figura) se usa para alternar entre el estado del puerto, el dúplex del puerto, la velocidad del puerto y, si es compatible, el estado de la alimentación a través de Ethernet (PoE) de los LED del puerto (8 en la figura).
 
@@ -75,5 +81,53 @@ Se puede acceder al cargador de arranque mediante una conexión de consola con l
 Escriba **help** o **?** en el símbolo del gestor de arranque para ver una lista de comandos disponibles.
 
 De manera predeterminada, el switch intenta iniciarse automáticamente mediante el uso de información en la variable de entorno BOOT. Para ver la ruta de acceso de la variable de entorno BOOT del switch, escriba el comando **set**. A continuación, inicialice el sistema de archivos flash utilizando el comando **flash_init** para ver los archivos actuales en flash, como se muestra en la salida.
+# Simulación de Consola Cisco
 
+<div class="console-container" id="terminal"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const terminal = new Terminal({
+            cols: 80,
+            rows: 24,
+            theme: {
+                background: '#000000',
+                foreground: '#0f0'
+            }
+        });
+        terminal.open(document.getElementById('terminal'));
+
+        const prompt = 'S1(config)# ';
+        terminal.write(prompt);
+
+        let command = '';
+
+        terminal.onKey(e => {
+            const { key, domEvent } = e;
+
+            if (domEvent.key === 'Enter') { // Enter key
+                terminal.write('\r\n');
+                if (command === 'show version') {
+                    terminal.write('Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 15.0(2)SE, RELEASE SOFTWARE (fc1)\r\n');
+                } else if (command.startsWith('boot system')) {
+                    terminal.write('Configuración de boot system actualizada.\r\n');
+                } else {
+                    terminal.write('Comando no reconocido.\r\n');
+                }
+                terminal.write(prompt);
+                command = '';
+            } else if (domEvent.key === 'Backspace') { // Backspace key
+                if (command.length > 0) {
+                    terminal.write('\b \b');
+                    command = command.slice(0, -1);
+                }
+            } else if (!domEvent.ctrlKey && !domEvent.altKey && !domEvent.metaKey) { // Filtra las teclas de control
+                terminal.write(key);
+                command += key;
+            }
+        });
+
+        terminal.focus();
+    });
+</script>

@@ -2,8 +2,6 @@
 
 ## Dominios de colisiones
 
-En el tema anterior, obtuvo una mejor comprensión de lo que es un switch y cómo funciona. En este tema se explica cómo funcionan los switches entre sí y con otros dispositivos para eliminar colisiones y reducir la congestión de la red. Los términos colisiones y congestión se utilizan aquí de la misma manera que se utilizan en el tráfico callejero.
-
 En segmentos Ethernet basados en hubs antiguos, los dispositivos de red compitieron por el medio compartido. Los segmentos de red que comparten el mismo ancho de banda entre dispositivos se conocen como dominios de colisión. Cuando dos o más dispositivos del mismo dominio de colisión tratan de comunicarse al mismo tiempo, se produce una colisión.
 
 Si un puerto Ethernet de switch funciona en semidúplex, cada segmento está en su propio dominio de colisión. No hay dominios de colisión cuando los puertos del switch funcionan en dúplex completo. Sin embargo, podría haber un dominio de colisión si un puerto de switch funciona en semidúplex.
@@ -11,6 +9,7 @@ Si un puerto Ethernet de switch funciona en semidúplex, cada segmento está en 
 De manera predeterminada, los puertos de Ethernet del switch negociarán automáticamente el dúplex completo cuando el dispositivo adyacente también pueda funcionar en dúplex completo. Si el puerto del switch está conectado a un dispositivo que funciona en semidúplex, como por ejemplo un hub antiguo, el puerto de switch funcionará en modo semidúplex. En el caso de semidúplex, el puerto de switch formará parte de un dominio de colisión.
 
 Como se muestra en la figura, se elige dúplex completo si ambos dispositivos cuentan con la funcionalidad, junto con su ancho de banda común más elevado.
+
 
 
 el diagrama muestra que un PC y un switch negociarán automáticamente la configuración y las velocidades dúplex correspondientes. En este caso dúplex completo y 100Mb por segundo

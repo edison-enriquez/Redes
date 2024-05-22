@@ -1,0 +1,115 @@
+body {
+    font-family: 'LeagueGothic', Helvetica, Verdana, Arial, sans-serif;
+    background-color: #000;
+    color: #ccc;
+}
+
+.page-title {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro opaco con 80% de opacidad */
+    color: #0f0 !important; /* Texto verde */
+    padding: 10px; /* Espaciado interno */
+    font-size: 1.5em; /* Tamaño de fuente ajustado */
+}
+
+.menu-title {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro opaco con 80% de opacidad */
+    color: #0f0; /* Texto verde */
+    padding: 10px; /* Espaciado interno */
+    font-size: 1.5em; /* Tamaño de fuente ajustado */
+}
+
+
+.header {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro opaco con 80% de opacidad */
+    color: #0f0; /* Texto verde */
+    padding: 10px; /* Espaciado interno */
+    font-size: 1.5em; /* Tamaño de fuente ajustado */
+}
+
+.console-container {
+    border: 1px solid #0f0;
+    padding: 10px;
+    height: 400px;
+    width: 100%;
+    background-color: #000;
+    color: #0f0;
+    font-family: monospace;
+    overflow: hidden; /* Oculta los desbordamientos para mantener el terminal dentro del contenedor */
+}
+
+.xterm {
+    height: 100%;
+    width: 100%;
+}
+
+.xterm-viewport::-webkit-scrollbar {
+    width: 10px;
+}
+
+.xterm-viewport::-webkit-scrollbar-track {
+    background: #000;
+}
+
+.xterm-viewport::-webkit-scrollbar-thumb {
+    background-color: #0f0;
+    border-radius: 10px;
+    border: 2px solid #000;
+}
+
+
+
+.console-output {
+    white-space: pre-wrap; /* Para mantener el formato de los espacios y líneas */
+}
+
+.console-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.console-input {
+    border: none;
+    background: none;
+    color: #0f0;
+    outline: none;
+    font-family: monospace;
+    flex-grow: 1; /* Para que tome todo el espacio disponible */
+}
+
+.prompt {
+    margin-right: 5px;
+}
+
+.hljs {
+    background: #000 !important;
+    color: #0f0 !important;
+    font-family: monospace !important;
+}
+.hljs-meta {
+    color: #ff6347; /* Color del prompt */
+}
+
+.bash {
+    background-color: #000;
+    color: #0f0;
+    font-family: monospace;
+    padding: 2px 4px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.bash-block {
+    background-color: #000;
+    color: #0f0;
+    font-family: monospace;
+    padding: 10px;
+    border-radius: 4px;
+    display: block;
+    white-space: pre-wrap; /* Mantiene el formato de los saltos de línea */
+}
+
+code {
+    font-family: var(--mono-font) !important;
+    font-size: var(--code-font-size);
+    direction: ltr !important;
+}

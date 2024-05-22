@@ -60,8 +60,9 @@ El intercambio de almacenamiento y reenvío, a diferencia del intercambio de cor
 
 La figura ilustra cómo almacenar y reenviar toma una decisión basada en la trama Ethernet.
 
+La figura ilustra cómo almacenar y reenviar toma una decisión basada en la trama Ethernet.
 
-
+![[Pasted image 20240511115410.png]]
 ## Switching por método de corte
 
 El método de switching de almacenamiento y reenvío elimina las tramas que no pasan la comprobación FCS. Por lo tanto, no reenvía tramas no válidas.
