@@ -3,7 +3,7 @@ authors = ["edison-enriquez"]
 language = "en"
 multilingual = false
 src = "src"
-title = "redes"
+title = "Switching, Routing, y Wireless Essentials"
 
 [output.html]
 additional-css = ["theme/css/additional.css",]
