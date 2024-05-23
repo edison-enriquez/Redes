@@ -1,0 +1,324 @@
+<!DOCTYPE HTML>
+<html lang="en" class="dark" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Conceptos de switching - Switching, Routing, y Wireless Essentials</title>
+
+
+        <!-- Custom HTML head -->
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Conceptos de switching - Switching, Routing, y Wireless Essentials</title>
+            <link rel="stylesheet" href="/css/custom.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+</head>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../theme/css/additional.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "dark";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('dark')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../homepage.html">Nwtworking - Home</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/introduction.html">Configuración básica de dispositivos</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/basic_Config_of_switch.html">Configuración de parámetros iniciales de un switch</a></li></ol></li><li class="chapter-item expanded "><a href="../../Networking/switching/frame_forwarding.html" class="active">Conceptos de switching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/switching/introduction.html">Configuración de puertos de un switch</a></li><li class="chapter-item "><a href="../../Networking/switching/collision_and_broadcast_domains.html">Dominios de switching</a></li></ol></li><li class="chapter-item "><a href="../../Networking/VLAN/introduction.html">VLANs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/VLAN/VLANs_in_a_Multi_Switched_Environment.html">Redes VLAN en un entorno conmutado múltiple</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLANs_config.html">Configuración de VLAN</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLAN_Trunks.html">Enlaces troncales de la VLAN</a></li></ol></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Switching, Routing, y Wireless Essentials</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="conceptos-de-switching"><a class="header" href="#conceptos-de-switching">Conceptos de switching</a></h1>
+<h2 id="switching-en-la-red"><a class="header" href="#switching-en-la-red">Switching en la red</a></h2>
+<p>El concepto de switching y reenvío de tramas es universal en la tecnología de redes y en las telecomunicaciones. En las redes LAN, WAN y en la red pública de telefonía conmutada (PSTN), se usan diversos tipos de switches.</p>
+<p>La decisión sobre cómo un switch reenvía el tráfico se toma en relación con el flujo de ese tráfico. Hay dos términos asociados a las tramas que entran y salen de una interfaz:</p>
+<ul>
+<li><strong>Entrada</strong> - Este término se usa para describir el puerto por donde una trama ingresa al dispositivo.</li>
+<li><strong>Salida</strong> - Este término se usa para describir el puerto que las tramas utilizarán al salir del dispositivo.</li>
+</ul>
+<p>Un switch LAN mantiene una tabla a la que hace referencia al reenviar tráfico a través del switch. La única inteligencia de un switch LAN es su capacidad de usar su tabla para reenviar tráfico. Un switch LAN reenvía tráfico basado en el puerto de entrada y la dirección MAC de destino de una trama Ethernet. Con un switch LAN, hay solamente una tabla de switching principal que describe una asociación estricta entre las direcciones MAC y los puertos; por lo tanto, una trama Ethernet con una dirección de destino determinada siempre sale por el mismo puerto de salida, independientemente del puerto de entrada por el que ingresa.</p>
+<p><strong>Nota</strong>: Una trama Ethernet nunca se reenviará fuera del mismo puerto en el que se recibió.</p>
+<h2 id="tabla-de-direcciones-mac-del-switch"><a class="header" href="#tabla-de-direcciones-mac-del-switch">Tabla de direcciones MAC del switch</a></h2>
+<p>Un switch se compone de circuitos integrados y del software complementario que controla las rutas de datos a través del switch. Los switches usan direcciones MAC de destino para dirigir las comunicaciones de red a través del switch, fuera del puerto apropiado, hacia el destino.</p>
+<p>Para definir qué puerto usar para transmitir una trama, el switch primero debe saber qué dispositivos existen en cada puerto. A medida que el switch aprende la relación de los puertos con los dispositivos, construye una tabla llamada tabla de direcciones MAC. Esta tabla se almacena en la Memoria de Contenido Direccionable (Content-Addressable Memory, CAM), la cual es un tipo especial de memoria utilizada en aplicaciones de búsqueda de alta velocidad. Por esta razón, la tabla de direcciones MAC a veces también se denomina tabla CAM.</p>
+<p>Los switches LAN determinan cómo manejar las tramas de datos entrantes manteniendo la tabla de direcciones MAC. Un switch llena su tabla de direcciones MAC al registrar la dirección MAC de origen de cada dispositivo conectado a cada uno de sus puertos. El switch hace referencia a la información en la tabla de direcciones MAC para enviar tramas destinadas a un dispositivo específico fuera del puerto que se ha asignado a ese dispositivo.</p>
+<h2 id="el-método-aprender-y-reenviar-del-switch"><a class="header" href="#el-método-aprender-y-reenviar-del-switch">El método Aprender y Reenviar del Switch</a></h2>
+<p>El siguiente proceso de dos pasos se realiza para cada trama de Ethernet que ingresa a un switch.</p>
+<p><strong>Paso 1. Aprender - Examinando la dirección Origen MAC</strong></p>
+<p>Se revisa cada trama que ingresa a un switch para obtener información nueva. Esto se realiza examinando la dirección MAC de origen de la trama y el número de puerto por el que ingresó al switch.</p>
+<ul>
+<li>Si la dirección MAC de origen no existe en la tabla de direcciones MAC, la dirección MAC y el número de puerto entrante son agregados a la tabla.</li>
+<li>Si la dirección MAC de origen existe, el switch actualiza el temporizador para esa entrada. De manera predeterminada, la mayoría de los switches Ethernet guardan una entrada en la tabla durante cinco minutos. Si la dirección MAC de origen existe en la tabla, pero en un puerto diferente, el switch la trata como una entrada nueva. La entrada se reemplaza con la misma dirección MAC, pero con el número de puerto más actual.</li>
+</ul>
+<p><strong>Paso 2. Reenviar - Examinadno la dirección destino MAC</strong></p>
+<p>Si la dirección MAC de destino es una dirección de unidifusión, el switch busca una coincidencia entre la dirección MAC de destino de la trama y una entrada de la tabla de direcciones MAC:</p>
+<ul>
+<li>Si la dirección MAC de destino está en la tabla, reenviará la trama por el puerto especificado.</li>
+<li>Si la dirección MAC de destino no está en la tabla, el switch reenviará la trama por todos los puertos, excepto por el de entrada. Esto se conoce como unidifusión desconocida. Si la dirección MAC de destino es de difusión o de multidifusión, la trama también se envía por todos los puertos, excepto por el de entrada.</li>
+</ul>
+<h2 id="métodos-de-reenvío-del-switch"><a class="header" href="#métodos-de-reenvío-del-switch">Métodos de reenvío del switch</a></h2>
+<p>Los switches toman decisiones de reenvío de capa 2 muy rápidamente. Esto se debe al software en los circuitos integrados para aplicaciones específicas (ASIC, por sus siglas en ingles). Los ASIC reducen el tiempo de manejo de paquetes dentro del dispositivo y permiten que el dispositivo pueda manejar una mayor cantidad de puertos sin disminuir el rendimiento.</p>
+<p>Los switches de capa 2 utilizan uno de estos dos métodos para cambiar tramas:</p>
+<ul>
+<li><strong>Almacenamiento y reenvío de switching</strong> - Este método toma una decisión de reenvío en una trama después de haber recibido la trama completa y revisada para la detección de errores mediante un mecanismo matemático de verificación de errores conocido como Verificación por Redundancia Cíclica (Cyclic Redundancy Check, CRC). El intercambio por almacenamiento y envío es el método principal de switching LAN de Cisco.</li>
+<li><strong>Método de corte</strong> - Este método inicia el proceso de reenvío una vez que se determinó la dirección MAC de destino de una trama entrante y se estableció el puerto de salida.</li>
+</ul>
+<h2 id="intercambio-de-almacenamiento-y-reenvío"><a class="header" href="#intercambio-de-almacenamiento-y-reenvío">Intercambio de almacenamiento y reenvío</a></h2>
+<p>El intercambio de almacenamiento y reenvío, a diferencia del intercambio de corte, tiene laS siguientes características principales:</p>
+<ul>
+<li><strong>Verificación de errores</strong> - Después de recibir la trama completa en el puerto de entrada, el switch compara el valor de Secuencia de Verificación de Trama (Frame Check Sequence, FCS) en el último campo del datagrama con sus propios cálculos de FCS. FCS es un proceso de verificación de errores que contribuye a asegurar que la trama no contenga errores físicos ni de enlace de datos. Si la trama no posee errores, el switch la reenvía. De lo contrario, se descartan las tramas.</li>
+<li><strong>Almacenamiento en búfer automático</strong> - El proceso de almacenamiento en buffer que usan los switches de almacenamiento y envío proporciona la flexibilidad para admitir cualquier combinación de velocidades de Ethernet. Por ejemplo, manejar una trama entrante que viaja a un puerto Ethernet de 100 Mbps que debe enviarse a una interfaz de 1 Gbps, requeriría utilizar el método de almacenamiento y reenvío. Ante cualquier incompatibilidad de las velocidades de los puertos de entrada y salida, el switch almacena la trama completa en un buffer, calcula la verificación de FCS, la reenvía al buffer del puerto de salida y después la envía.</li>
+</ul>
+<p>La figura ilustra cómo almacenar y reenviar toma una decisión basada en la trama Ethernet.</p>
+<p>La figura ilustra cómo almacenar y reenviar toma una decisión basada en la trama Ethernet.</p>
+<p>![[Pasted image 20240511115410.png]]</p>
+<h2 id="switching-por-método-de-corte"><a class="header" href="#switching-por-método-de-corte">Switching por método de corte</a></h2>
+<p>El método de switching de almacenamiento y reenvío elimina las tramas que no pasan la comprobación FCS. Por lo tanto, no reenvía tramas no válidas.</p>
+<p>Por el contrario, los switches que usan el método de corte pueden reenviar tramas no válidas, ya que no realizan la verificación de FCS. Sin embargo, el switching de corte tiene la capacidad de realizar un cambio de trama rápida. Esto significa que los switches que usan el método de corte pueden tomar una decisión de reenvío tan pronto como encuentren la dirección MAC de destino de la trama en la tabla de direcciones MAC, tal y como se muestra en la ilustración.</p>
+<p>El switch no tiene que esperar a que el resto de la trama ingrese al puerto de entrada antes de tomar la decisión de reenvío.</p>
+<p>El switching libre de fragmentos es una forma modificada de corte, en la que el switch solo comienza a reenviar la trama después de haber leído el campo Tipo. El switching libre de fragmentos proporciona una mejor verificación de errores que el método de corte, con prácticamente ningún aumento de latencia.</p>
+<p>La velocidad de latencia más baja del switching por corte hace que resulte más adecuado para las aplicaciones mas demandantes de Tecnología Informática de Alto Rendimiento (High-Performance Computing, HPC) que requieren latencias de proceso a proceso de 10 microsegundos o menos.</p>
+<p>El método switching de corte puede reenviar tramas con errores. Si hay un índice de error alto (tramas no válidas) en la red, el switching por método de corte puede tener un impacto negativo en el ancho de banda, de esta forma, se obstruye el ancho de banda con las tramas dañadas y no válidas.</p>
+<h2 id="actividad-el-switch"><a class="header" href="#actividad-el-switch">Actividad: El Switch!</a></h2>
+<p>Utilice esta actividad para comprobar su comprensión de cómo un switch aprende y reenvía tramas.</p>
+<p><strong>Pregunta 1</strong> - ¿Adónde reenviará la trama el switch?</p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+fa1</li>
+<li><input disabled="" type="checkbox"/>
+fa2</li>
+<li><input disabled="" type="checkbox"/>
+fa3</li>
+<li><input disabled="" type="checkbox"/>
+fa4</li>
+<li><input disabled="" type="checkbox"/>
+fa5</li>
+<li><input disabled="" type="checkbox"/>
+fa6</li>
+<li><input disabled="" type="checkbox"/>
+fa7</li>
+<li><input disabled="" type="checkbox"/>
+fa8</li>
+<li><input disabled="" type="checkbox"/>
+fa9</li>
+<li><input disabled="" type="checkbox"/>
+fa10</li>
+<li><input disabled="" type="checkbox"/>
+fa11</li>
+<li><input disabled="" type="checkbox"/>
+fa12</li>
+</ul>
+<p><strong>Pregunta 2</strong> - ¿Cuáles de estas afirmaciones sobre el reenvío de una trama por parte del switch son verdaderas?</p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Switch agrega la dirección MAC de origen que actualmente no está en la tabla de direcciones MAC.</li>
+<li><input disabled="" type="checkbox"/>
+La trama es una trama de difusión y se reenvía a todos los puertos.</li>
+<li><input disabled="" type="checkbox"/>
+La trama es una trama de unidifusión y se reenvía solamente a un puerto específico.</li>
+<li><input disabled="" type="checkbox"/>
+La trama es una trama de unidifusión y se distribuye por saturación a todos los puertos.</li>
+<li><input disabled="" type="checkbox"/>
+La trama es de unidifusión, pero se descarta en el switch.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Networking/basic_Config_of_switch.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../Networking/switching/introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Networking/basic_Config_of_switch.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../Networking/switching/introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../theme/additional.js"></script>
+
+
+    </div>
+    </body>
+</html>

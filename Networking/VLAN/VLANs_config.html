@@ -1,0 +1,423 @@
+<!DOCTYPE HTML>
+<html lang="en" class="dark" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Configuración de VLAN - Switching, Routing, y Wireless Essentials</title>
+
+
+        <!-- Custom HTML head -->
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Configuración de VLAN - Switching, Routing, y Wireless Essentials</title>
+            <link rel="stylesheet" href="/css/custom.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+</head>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../theme/css/additional.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "dark";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('dark')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../homepage.html">Nwtworking - Home</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/introduction.html">Configuración básica de dispositivos</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/basic_Config_of_switch.html">Configuración de parámetros iniciales de un switch</a></li></ol></li><li class="chapter-item "><a href="../../Networking/switching/frame_forwarding.html">Conceptos de switching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/switching/introduction.html">Configuración de puertos de un switch</a></li><li class="chapter-item "><a href="../../Networking/switching/collision_and_broadcast_domains.html">Dominios de switching</a></li></ol></li><li class="chapter-item expanded "><a href="../../Networking/VLAN/introduction.html">VLANs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/VLAN/VLANs_in_a_Multi_Switched_Environment.html">Redes VLAN en un entorno conmutado múltiple</a></li><li class="chapter-item expanded "><a href="../../Networking/VLAN/VLANs_config.html" class="active">Configuración de VLAN</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLAN_Trunks.html">Enlaces troncales de la VLAN</a></li></ol></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Switching, Routing, y Wireless Essentials</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="configuración-de-vlan"><a class="header" href="#configuración-de-vlan">Configuración de VLAN</a></h1>
+<h2 id="rangos-de-vlan-en-los-switches-catalyst"><a class="header" href="#rangos-de-vlan-en-los-switches-catalyst">Rangos de VLAN en los switches Catalyst</a></h2>
+<p>Crear VLAN, como la mayoría de los demás aspectos de la red, es cuestión de introducir los comandos apropiados. En este tema se detalla cómo configurar y verificar diferentes tipos de VLAN.</p>
+<p>Los distintos switches Cisco Catalyst admiten diversas cantidades de VLAN. La cantidad de VLAN que admiten es suficiente para satisfacer las necesidades de la mayoría de las organizaciones. Por ejemplo, los switches de las series Catalyst 2960 y 3560 admiten más de 4000 VLAN. Las VLAN de rango normal en estos switches se numeran del 1 al 1005, y las VLAN de rango extendido se numeran del 1006 al 4094. En la ilustración, se muestran las VLAN disponibles en un switch Catalyst 2960 que ejecuta IOS de Cisco, versión 15.x.</p>
+<pre><code class="language-powershell">Switch# show vlan brief
+
+VLAN Name              Status   Ports
+---- ----------------- -------  --------------------
+1    default           active   Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                Gi0/1, Gi0/2
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+</code></pre>
+<h3 id="rango-normal-vlans"><a class="header" href="#rango-normal-vlans">Rango Normal VLANs</a></h3>
+<p>Las siguientes son las características de las VLAN de rango normal:
+</br></br>
+Se utiliza en redes de pequeños y medianos negocios y empresas.
+Se identifica mediante una ID de VLAN entre 1 y 1005.
+Las ID de 1002 a 1005 se reservan para las VLAN de Token Ring e interfaz de datos distribuidos por fibra óptica (FDDI).
+Las ID 1 y 1002 a 1005 se crean automáticamente y no se pueden eliminar.
+Las configuraciones se almacenan en un archivo de base de datos de VLAN llamado vlan.dat, que se guarda en la memoria flash.
+Cuando se configura, el protocolo de enlace troncal VLAN (VTP) ayuda a sincronizar la base de datos VLAN entre conmutadores.</p>
+<h3 id="rango-extendido-vlans"><a class="header" href="#rango-extendido-vlans">Rango Extendido VLANs</a></h3>
+<p>Las siguientes son las características de las VLAN de rango extendido:
+</br></br>
+Los proveedores de servicios los* utilizan para dar servicio a varios clientes y por las empresas globales lo suficientemente grandes como para necesitar identificadores de VLAN de rango extendido.
+</br></br></p>
+<p>Se identifican mediante una ID de VLAN entre 1006 y 4094.
+Las configuraciones se guardan en el archivo de configuración en ejecución.
+Admiten menos características de VLAN que las VLAN de rango normal.
+Requiere la configuración del modo transparente VTP para admitir VLAN de rango extendido.
+Nota: Nota: la cantidad máxima de VLAN disponibles en los switches Catalyst es 4096, ya que el campo ID de VLAN tiene 12 bits en el encabezado IEEE 802.1Q.</p>
+<h2 id="comandos-de-creación-de-vlan"><a class="header" href="#comandos-de-creación-de-vlan">Comandos de creación de VLAN</a></h2>
+<p>Al configurar redes VLAN de rango normal, los detalles de configuración se almacenan en la memoria flash del switch en un archivo denominado vlan.dat. La memoria flash es persistente y no requiere el copy running-config startup-config comando. Sin embargo, debido a que en los switches Cisco se suelen configurar otros detalles al mismo tiempo que se crean las VLAN, es aconsejable guardar los cambios a la configuración en ejecución en la configuración de inicio.
+</br></br>
+En la figura 1, se muestra la sintaxis del comando de IOS de Cisco que se utiliza para agregar una VLAN a un switch y asignarle un nombre. Se recomienda asignarle un nombre a cada VLAN en la configuración de un switch.</p>
+<div class="table-wrapper"><table><thead><tr><th>Tarea</th><th>Comando de IOS</th></tr></thead><tbody>
+<tr><td>Ingresa al modo de configuración global.</td><td><code>Switch# configure terminal</code></td></tr>
+<tr><td>Cree una VLAN con un número de ID válido.</td><td><code>Switch(config)# vlan vlan-id</code></td></tr>
+<tr><td>Especificar un nombre único para identificar la VLAN.</td><td><code>Switch(config-vlan)# name vlan-name</code></td></tr>
+<tr><td>Vuelva al modo EXEC privilegiado.</td><td><code>Switch(config-vlan)# end</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="ejemplo-de-creación-de-vlan"><a class="header" href="#ejemplo-de-creación-de-vlan">Ejemplo de creación de VLAN</a></h2>
+<p>En el ejemplo de topología, la computadora del estudiante (PC2) todavía no se asoció a ninguna VLAN, pero tiene la dirección IP 172.17.20.22, que pertenece a la VLAN 20.</p>
+<p><img src="image-10.png" alt="alt text" /></p>
+<p>En la figura, se muestra cómo se configura la VLAN para estudiantes (VLAN 20) en el switch S1.</p>
+<pre><code class="language-powershell">S1# configure terminal
+S1(config)# vlan 20
+S1(config-vlan)# name student
+S1(config-vlan)# end
+</code></pre>
+<p><strong>Nota</strong>: Además de introducir una única ID de VLAN, se puede introducir una serie de ID de VLAN separadas por comas o un rango de ID de VLAN separado por guiones usando el <strong>vlan</strong> comando<code> vlan-id</code> . Por ejemplo, al introducir el comando de configuración <strong>vlan 100,102,105-107</strong> global se crearían las VLAN 100, 102, 105, 106 y 107.</p>
+<h3 id="comandos-de-asignación-de-puertos-vlan"><a class="header" href="#comandos-de-asignación-de-puertos-vlan">Comandos de asignación de puertos VLAN</a></h3>
+<p>Después de crear una VLAN, el siguiente paso es asignar puertos a la VLAN.
+</br></br>
+En la figura se muestra la sintaxis para definir un puerto como puerto de acceso y asignarlo a una VLAN. EL switchport mode access comando es optativo, pero se aconseja como práctica recomendada de seguridad. Con este comando, la interfaz cambia al modo de acceso permanente.</p>
+<div class="table-wrapper"><table><thead><tr><th>Tarea</th><th>Comando de IOS</th></tr></thead><tbody>
+<tr><td>Ingrese al modo de configuración global.</td><td><code>Switch# configure terminal</code></td></tr>
+<tr><td>Ingrese el modo de configuración de interfaz.</td><td><code>Switch(config)# interface interface-id</code></td></tr>
+<tr><td>Establezca el puerto en modo de acceso.</td><td><code>Switch(config-if)# switchport mode access</code></td></tr>
+<tr><td>Asigne el puerto a una VLAN.</td><td><code>Switch(config-if)# switchport access vlan vlan-id</code></td></tr>
+<tr><td>Vuelva al modo EXEC privilegiado.</td><td><code>Switch(config-if)# end</code></td></tr>
+</tbody></table>
+</div>
+<h3 id="ejemplo-de-asignación-de-puerto-vlan"><a class="header" href="#ejemplo-de-asignación-de-puerto-vlan">Ejemplo de asignación de puerto VLAN</a></h3>
+<p>En la figura, el puerto F0/6 en el conmutador S1 se configura como un puerto de acceso y se asigna a la VLAN 20. Cualquier dispositivo conectado a ese puerto está asociado con la VLAN 20. Por lo tanto, en nuestro ejemplo, PC2 está en la VLAN 20.</p>
+<p><img src="image-11.png" alt="alt text" /></p>
+<p>El ejemplo muestra la configuración de S1 para asignar F0/6 a VLAN 20.</p>
+<pre><code class="language-shell">S1# configure terminal
+S1(config)# interface fa0/6
+S1(config-if)# switchport mode access
+S1(config-if)# switchport access vlan 20
+S1(config-if)# end
+</code></pre>
+<p>Las VLAN se configuran en el puerto del switch y no en el terminal. La PC2 se configura con una dirección IPv4 y una máscara de subred asociadas a la VLAN, que se configura en el puerto de switch. En este ejemplo, es la VLAN 20. Cuando se configura la VLAN 20 en otros switches, el administrador de red debe configurar las otras computadoras de alumnos para que estén en la misma subred que la PC2 (172.17.20.0/24).</p>
+<h3 id="vlan-de-voz-datos"><a class="header" href="#vlan-de-voz-datos">VLAN de voz, datos</a></h3>
+<p>Un puerto de acceso puede pertenecer a sólo una VLAN a la vez. Sin embargo, un puerto también se puede asociar a una VLAN de voz. Por ejemplo, un puerto conectado a un teléfono IP y un dispositivo final se asociaría con dos VLAN: una para voz y otra para datos.
+</br></br>
+Consulte la topología en la figura. En este ejemplo, la PC5 está conectada con el teléfono IP de Cisco, que a su vez está conectado a la interfaz FastEthernet 0/18 en S3. Para implementar esta configuración, se crean una VLAN de datos y una VLAN de voz.</p>
+<p><img src="image-12.png" alt="alt text" /></p>
+<h3 id="ejemplo-de-vlan-de-voz-y-datos"><a class="header" href="#ejemplo-de-vlan-de-voz-y-datos">Ejemplo de VLAN de voz y datos</a></h3>
+<p>Utilice el comando switchport voice vlan vlan-id interface configuration para asignar una VLAN de voz a un puerto.</p>
+<p>Las redes LAN que admiten tráfico de voz por lo general también tienen la Calidad de Servicio (QoS) habilitada. El tráfico de voz debe etiquetarse como confiable apenas ingrese en la red. Use el mls qos trust [cos | device cisco-phone | dscp | ip-precedence] comando de configuración para establecer el estado confiable de una interfaz, y para indicar qué campos del paquete se usan para clasificar el tráfico.</p>
+<p>La configuración en el ejemplo crea las dos VLAN (es decir, VLAN 20 y VLAN 150), y a continuación, asigna la interfaz F0/18 de S3 como un puerto de switch en VLAN 20. También asigna el tráfico de voz en VLAN 150 y permite la clasificación de QoS basada en la Clase de Servicio (CoS) asignado por el teléfono IP.</p>
+<pre><code class="language-shell">S3(config)# vlan 20
+S3(config-vlan)# name student
+S3(config-vlan)# vlan 150
+S3(config-vlan)# name VOICE
+S3(config-vlan)# exit
+S3(config)# interface fa0/18
+S3(config-if)# switchport mode access
+S3(config-if)# switchport access vlan 20
+S3(config-if)# mls qos trust cos
+S3(config-if)# switchport voice vlan 150
+S3(config-if)# end
+S3#
+</code></pre>
+<p><strong>Nota</strong>: La implementación de QoS no está contemplada en este curso.</p>
+<p>El comando <code>switchport access vlan</code> fuerza la creación de una VLAN si es que aún no existe en el switch. Por ejemplo, la VLAN 30 no está presente en la salida del comando <code>show vlan brief</code> del switch. Si se introduce el comando <code>switchport access vlan 30</code> en cualquier interfaz sin configuración previa, el switch muestra lo siguiente:</p>
+<p><code>% Access VLAN does not exist. Creating vlan 30 </code></p>
+<h3 id="verificar-la-información-de-la-vlan"><a class="header" href="#verificar-la-información-de-la-vlan">Verificar la información de la VLAN</a></h3>
+<p>Una vez que se configura una VLAN, se puede validar la configuración con los comandos show de IOS de Cisco
+</br></br>
+El comando <code>show vlan</code> muestra la lista de todas las VLAN configuradas. El comando <code>show vlan</code> también se puede utilizar con opciones. La sintaxis completa es <code>show vlan [brief | id vlan-id | name vlan-name | summary]</code>.
+</br></br>
+En la tabla se describen las opciones de show vlan comando.</p>
+<div class="table-wrapper"><table><thead><tr><th>Tarea</th><th>Opción de comando</th></tr></thead><tbody>
+<tr><td>Muestra el nombre de VLAN, el estado y sus puertos una VLAN por linea.</td><td><code>brief</code></td></tr>
+<tr><td>Muestra información sobre el número de ID de VLAN identificado. Para vlan-id, the range is 1 to 4094.</td><td><code>id vlan-id</code></td></tr>
+<tr><td>Muestra información sobre el número de ID de VLAN identificado. El vlan-name es una cadena ASCII de 1 a 32 caracteres.</td><td><code>name vlan-name</code></td></tr>
+<tr><td>Mostrar el resumen de información de la VLAN.</td><td><code>summary</code></td></tr>
+<tr><td></br></br></td><td></td></tr>
+</tbody></table>
+</div>
+<p>El comando <code>show vlan summary</code> muestra la lista de todas las VLAN configuradas.</p>
+<pre><code class="language-powershell">S1# show vlan summary
+Number of existing VLANs              : 7
+Number of existing VTP VLANs          : 7
+Number of existing extended VLANS     : 0
+</code></pre>
+<p>Otros comandos útiles son el comando show interfaces interface-id switchport y el comando show interfaces vlan vlan-id. Por ejemplo, el show interfaces fa0/18 switchport comando se puede utilizar para confirmar que el puerto FastEthernet 0/18 se ha asignado correctamente a las VLAN de datos y voz.</p>
+<pre><code class="language-shell">S1# show interfaces fa0/18 switchport
+Name: Fa0/18
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: static access
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: native
+Negotiation of Trunking: Off
+Access Mode VLAN: 20 (student) 
+Trunking Native Mode VLAN: 1 (default)
+Voice VLAN: 150
+Administrative private-vlan host-association: none
+(Output omitted)
+</code></pre>
+<h3 id="cambio-de-pertenencia-de-puertos-de-una-vlan"><a class="header" href="#cambio-de-pertenencia-de-puertos-de-una-vlan">Cambio de pertenencia de puertos de una VLAN</a></h3>
+<p>Existen varias maneras de cambiar la pertenencia de puertos de una VLAN.
+</br></br>
+Si el puerto de acceso del switch se ha asignado incorrectamente a una VLAN, simplemente vuelva a ingresar el comando switchport access vlan vlan-id interface configuration con el ID de VLAN correcto. Por ejemplo, suponga que Fa0/18 se configuró incorrectamente para estar en la VLAN 1 predeterminada en lugar de la VLAN 20. Para cambiar el puerto a VLAN 20, simplemente ingrese switchport access vlan 20.
+</br></br>
+Para volver a cambiar la pertenencia de un puerto a la VLAN 1 predeterminada, utilice el comando no switchport access vlan interface configuration mode como se muestra.
+</br></br>
+En la salida, por ejemplo, Fa0/18 está configurado para estar en la VLAN 1 predeterminada, tal como lo confirma el show vlan brief comando.</p>
+<pre><code class="language-powershell">S1(config)# interface fa0/18
+S1(config-if)# no switchport access vlan
+S1(config-if)# end
+S1#
+S1# show vlan brief
+VLAN Name                 Status    Ports
+---- ------------------ --------- -------------------------------
+1    default            active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                  Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                  Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                  Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                  Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                  Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                  Gi0/1, Gi0/2
+20   student            active    
+1002 fddi-default       act/unsup 
+1003 token-ring-default act/unsup 
+1004 fddinet-default    act/unsup 
+1005 trnet-default      act/unsup
+</code></pre>
+<p>Nota que la VLAN 20 sigue activa, aunque no tenga puertos asignados.</p>
+<p>La show interfaces f0/18 switchport salida también se puede utilizar para verificar que la VLAN de acceso para la interfaz F0/18 se ha restablecido a la VLAN 1 como se muestra en la salida.</p>
+<pre><code class="language-powershell">S1# show interfaces fa0/18 switchport
+Name: Fa0/18
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: static access
+Administrative Trunking Encapsulation: negotiate
+Operational Trunking Encapsulation: native
+Negotiation of Trunking: Off
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+</code></pre>
+<h3 id="eliminar-las-vlan"><a class="header" href="#eliminar-las-vlan">Eliminar las VLAN</a></h3>
+<p>El comando de modo de configuración global <code>no vlan vlan-id</code> se usa para remover una VLAN desde el archivo del switch vlan.dat.
+</br></br>
+<strong>Precaución</strong>: Antes de borrar una VLAN, reasigne todos los puertos miembros a una VLAN distinta. Los puertos que no se trasladen a una VLAN activa no se podrán comunicar con otros hosts una vez que se elimine la VLAN y hasta que se asignen a una VLAN activa.
+</br></br>
+Se puede eliminar el archivo vlan.dat en su totalidad con el comando <code>delete flash:vlan.dat delete flash:vlan.dat</code> del modo EXEC con privilegios. Se puede utilizar la versión abreviada del comando (<code>delete vlan.dat</code>) si no se trasladó el archivo vlan.dat de su ubicación predeterminada. Después de emitir este comando y de volver a cargar el switch, las VLAN configuradas anteriormente ya no están presentes. Esto vuelve al switch a la condición predeterminada de fábrica con respecto a la configuración de VLAN.
+</br></br>
+<strong>Nota</strong>: Para restaurar un conmutador Catalyst a su condición predeterminada de fábrica, desconecte todos los cables excepto la consola y el cable de alimentación del conmutador. A continuación, introduzca el comando de modo EXEC erase startup-config privilegiado seguido del comando <code>delete vlan.dat</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Networking/VLAN/VLANs_in_a_Multi_Switched_Environment.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../Networking/VLAN/VLAN_Trunks.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Networking/VLAN/VLANs_in_a_Multi_Switched_Environment.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../Networking/VLAN/VLAN_Trunks.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../theme/additional.js"></script>
+
+
+    </div>
+    </body>
+</html>

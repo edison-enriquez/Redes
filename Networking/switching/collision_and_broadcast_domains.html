@@ -3,14 +3,14 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Configuración de puertos de un switch - Switching, Routing, y Wireless Essentials</title>
+        <title>Dominios de switching - Switching, Routing, y Wireless Essentials</title>
 
 
         <!-- Custom HTML head -->
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Configuración de puertos de un switch - Switching, Routing, y Wireless Essentials</title>
+            <title>Dominios de switching - Switching, Routing, y Wireless Essentials</title>
             <link rel="stylesheet" href="/css/custom.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
 </head>
@@ -94,7 +94,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../homepage.html">Nwtworking - Home</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/introduction.html">Configuración básica de dispositivos</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/basic_Config_of_switch.html">Configuración de parámetros iniciales de un switch</a></li></ol></li><li class="chapter-item expanded "><a href="../../Networking/switching/frame_forwarding.html">Conceptos de switching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Networking/switching/introduction.html" class="active">Configuración de puertos de un switch</a></li><li class="chapter-item "><a href="../../Networking/switching/collision_and_broadcast_domains.html">Dominios de switching</a></li></ol></li><li class="chapter-item "><a href="../../Networking/VLAN/introduction.html">VLANs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/VLAN/VLANs_in_a_Multi_Switched_Environment.html">Redes VLAN en un entorno conmutado múltiple</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLANs_config.html">Configuración de VLAN</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLAN_Trunks.html">Enlaces troncales de la VLAN</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../homepage.html">Nwtworking - Home</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/introduction.html">Configuración básica de dispositivos</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/basic_Config_of_switch.html">Configuración de parámetros iniciales de un switch</a></li></ol></li><li class="chapter-item expanded "><a href="../../Networking/switching/frame_forwarding.html">Conceptos de switching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/switching/introduction.html">Configuración de puertos de un switch</a></li><li class="chapter-item expanded "><a href="../../Networking/switching/collision_and_broadcast_domains.html" class="active">Dominios de switching</a></li></ol></li><li class="chapter-item "><a href="../../Networking/VLAN/introduction.html">VLANs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/VLAN/VLANs_in_a_Multi_Switched_Environment.html">Redes VLAN en un entorno conmutado múltiple</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLANs_config.html">Configuración de VLAN</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLAN_Trunks.html">Enlaces troncales de la VLAN</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -176,17 +176,40 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="conceptos-de-switching"><a class="header" href="#conceptos-de-switching">Conceptos de switching</a></h1>
+                        <h1 id="dominios-de-switching"><a class="header" href="#dominios-de-switching">Dominios de switching</a></h1>
+<h2 id="dominios-de-colisiones"><a class="header" href="#dominios-de-colisiones">Dominios de colisiones</a></h2>
+<p>En segmentos Ethernet basados en hubs antiguos, los dispositivos de red compitieron por el medio compartido. Los segmentos de red que comparten el mismo ancho de banda entre dispositivos se conocen como dominios de colisión. Cuando dos o más dispositivos del mismo dominio de colisión tratan de comunicarse al mismo tiempo, se produce una colisión.</p>
+<p>Si un puerto Ethernet de switch funciona en semidúplex, cada segmento está en su propio dominio de colisión. No hay dominios de colisión cuando los puertos del switch funcionan en dúplex completo. Sin embargo, podría haber un dominio de colisión si un puerto de switch funciona en semidúplex.</p>
+<p>De manera predeterminada, los puertos de Ethernet del switch negociarán automáticamente el dúplex completo cuando el dispositivo adyacente también pueda funcionar en dúplex completo. Si el puerto del switch está conectado a un dispositivo que funciona en semidúplex, como por ejemplo un hub antiguo, el puerto de switch funcionará en modo semidúplex. En el caso de semidúplex, el puerto de switch formará parte de un dominio de colisión.</p>
+<p>Como se muestra en la figura, se elige dúplex completo si ambos dispositivos cuentan con la funcionalidad, junto con su ancho de banda común más elevado.</p>
+<p>el diagrama muestra que un PC y un switch negociarán automáticamente la configuración y las velocidades dúplex correspondientes. En este caso dúplex completo y 100Mb por segundo</p>
+<h2 id="dominios-de-difusión"><a class="header" href="#dominios-de-difusión">Dominios de difusión</a></h2>
+<p>Una serie de switches interconectados forma un dominio de difusión simple. Solo los dispositivos de capa de red, como los routers, pueden dividir un dominio de difusión de capa 2. Los routers se utilizan para segmentar los dominios de difusión, pero también segmentan un dominio de colisión.</p>
+<p>Cuando un dispositivo desea enviar una difusión de capa 2, la dirección MAC de destino de la trama se establece solo en números uno binarios.</p>
+<p>El dominio de difusión de capa 2 se denomina “dominio de difusión MAC”. El dominio de difusión MAC consta de todos los dispositivos en la LAN que reciben tramas de difusión de un host.</p>
+<p>Cuando un switch recibe una trama de difusión, la reenvía por cada uno de sus puertos, excepto por el puerto de entrada en el que se recibió la trama de difusión. Cada dispositivo conectado al switch recibe una copia de la trama de difusión y la procesa.</p>
+<p>En ocasiones, las difusiones son necesarias para localizar inicialmente otros dispositivos y servicios de red, pero también reducen la eficacia de la red. El ancho de banda de red se usa para propagar el tráfico de difusión. Si hay demasiadas difusiones y una carga de tráfico intensa en una red, se puede producir una congestión, lo que reduce el rendimiento de la red.</p>
+<p>Cuando hay dos switches conectados entre sí, se aumenta el dominio de difusión, como se ve en la segunda mitad de la animación. En este caso, se reenvía una trama de difusión a todos los puertos conectados en el switch S1. El switch S1 está conectado al switch S2. Luego, la trama se propaga a todos los dispositivos conectados al switch S2.</p>
+<h2 id="alivio-de-la-congestión-en-la-red"><a class="header" href="#alivio-de-la-congestión-en-la-red">Alivio de la congestión en la red</a></h2>
+<p>Los switches LAN tienen características especiales que los hacen eficaces para aliviar la congestión de una red. De manera predeterminada, los puertos de switch interconectados tratan de establecer un enlace en dúplex completo y por lo tanto se eliminan los dominios de colisión. Cada puerto dúplex completo del switch ofrece el ancho de banda completo a los dispositivos conectados a dicho puerto. Las conexiones dúplex completas aumentaron notablemente el rendimiento de las redes LAN y se requieren para velocidades de Ethernet de 1 Gb/s y superiores.</p>
+<p>Los switches interconectan segmentos LAN, usan una tabla de direcciones MAC para determinar los puertos de salida y pueden reducir o eliminar por completo las colisiones. Las características de los switches que alivian la congestión de la red incluyen las siguientes:</p>
+<ul>
+<li><strong>Velocidades de puertos rápidas</strong> : las velocidades de los puertos del switch Ethernet varían según el modelo y el propósito. Por ejemplo, la mayoría de los switches de capa de acceso admiten velocidades de puerto de 100 Mbps y 1 Gbps. Los switches de capa de distribución admiten velocidades de puerto de 100 Mbps, 1 Gbps y 10 Gbps y los switches de nivel central y centro de datos admiten velocidades de puerto de 100 Gbps, 40 Gbps y 10 Gbps. Los switches con velocidades de puerto más rápidas cuestan más pero pueden reducir la congestión.</li>
+<li><strong>Cambio interno rápido</strong> : los switches utilizan un bus interno rápido o memoria compartida para proporcionar un alto rendimiento.</li>
+<li><strong>Búferes de trama grande</strong> : los switches utilizan búferes de memoria grande para almacenar temporalmente más tramas recibidas antes de tener que empezar a descartarlas. Esto permite que el tráfico de entrada desde un puerto más rápido (por ejemplo, 1 Gbps) se reenvíe a un puerto de salida más lento (por ejemplo, 100 Mbps) sin perder tramas.</li>
+<li><strong>Alta densidad de puertos</strong> : un switch de alta densidad de puertos reduce los costos generales porque reduce el número de switches requeridos. Por ejemplo, si se necesitaran 96 puertos de acceso, sería menos costoso comprar dos switches de 48 puertos en lugar de cuatro switches de 24 puertos. Los switches de alta densidad de puertos también ayudan a mantener el tráfico local, lo que ayuda a aliviar la congestión.</li>
+</ul>
+<h2 id="verifique-su-comprensión---cambiar-dominios"><a class="header" href="#verifique-su-comprensión---cambiar-dominios">Verifique su comprensión - Cambiar dominios</a></h2>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../Networking/switching/frame_forwarding.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../Networking/switching/introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../Networking/switching/collision_and_broadcast_domains.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../Networking/VLAN/introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -196,11 +219,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../Networking/switching/frame_forwarding.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../Networking/switching/introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../Networking/switching/collision_and_broadcast_domains.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../Networking/VLAN/introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

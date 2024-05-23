@@ -7,7 +7,14 @@
 
 
         <!-- Custom HTML head -->
-        
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Configuración de parámetros iniciales de un switch - Switching, Routing, y Wireless Essentials</title>
+            <link rel="stylesheet" href="/css/custom.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+</head>
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -26,7 +33,6 @@
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
-
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="../theme/css/additional.css">
 
@@ -88,7 +94,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../homepage.html">Nwtworking - Home</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Networking/introduction.html">Configuración básica de dispositivos</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Networking/basic_Config_of_switch.html" class="active">Configuración de parámetros iniciales de un switch</a></li></ol></li><li class="chapter-item "><a href="../Networking/switching/introduction.html">Conceptos de switching</a></li><li class="chapter-item "><a href="../Networking/VLAN/introduction.html">VLANs</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../homepage.html">Nwtworking - Home</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Networking/introduction.html">Configuración básica de dispositivos</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Networking/basic_Config_of_switch.html" class="active">Configuración de parámetros iniciales de un switch</a></li></ol></li><li class="chapter-item "><a href="../Networking/switching/frame_forwarding.html">Conceptos de switching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Networking/switching/introduction.html">Configuración de puertos de un switch</a></li><li class="chapter-item "><a href="../Networking/switching/collision_and_broadcast_domains.html">Dominios de switching</a></li></ol></li><li class="chapter-item "><a href="../Networking/VLAN/introduction.html">VLANs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Networking/VLAN/VLANs_in_a_Multi_Switched_Environment.html">Redes VLAN en un entorno conmutado múltiple</a></li><li class="chapter-item "><a href="../Networking/VLAN/VLANs_config.html">Configuración de VLAN</a></li><li class="chapter-item "><a href="../Networking/VLAN/VLAN_Trunks.html">Enlaces troncales de la VLAN</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -171,20 +177,80 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="configuración-de-parámetros-iniciales-de-un-switch"><a class="header" href="#configuración-de-parámetros-iniciales-de-un-switch">Configuración de parámetros iniciales de un switch</a></h1>
-<h2 id="secuencia-de-arranque-de-un-switch"><a class="header" href="#secuencia-de-arranque-de-un-switch">Secuencia de arranque de un switch</a></h2>
-<p>Antes de poder configurar un switch, debe encenderlo y permitirle pasar por la secuencia de arranque de cinco pasos. En este tema se tratan los conceptos básicos de la configuración de un switch e incluye un laboratorio al final.</p>
-<p>Después de encender un switch Cisco, pasa por la siguiente secuencia de inicio de cinco pasos:</p>
-<p>Paso 1: Primero, el switch carga un programa de autodiagnóstico al encender (POST) almacenado en la memoria ROM. El POST verifica el subsistema de la CPU. Este comprueba la CPU, la memoria DRAM y la parte del dispositivo flash que integra el sistema de archivos flash.
-Paso 2: A continuación, el switch carga el software del cargador de arranque. El cargador de arranque es un pequeño programa almacenado en la memoria ROM que se ejecuta inmediatamente después de que el POST se completa correctamente.
-Paso 3: El cargador de arranque lleva a cabo la inicialización de la CPU de bajo nivel. Inicializa los registros de la CPU, que controlan dónde está asignada la memoria física, la cantidad de memoria y su velocidad.
-Paso 4: El cargador de arranque inicia el sistema de archivos flash en la placa del sistema.
-Paso 5: Por último, el cargador de arranque localiza y carga una imagen de software del sistema operativo de IOS en la memoria y delega el control del switch a IOS.</p>
-<h3 id="el-comando-boot-system"><a class="header" href="#el-comando-boot-system">El comando boot system</a></h3>
+<h2 id="1-secuencia-de-arranque-de-un-switch"><a class="header" href="#1-secuencia-de-arranque-de-un-switch">1. Secuencia de arranque de un switch</a></h2>
+</br>
+Antes de poder configurar un switch, debe encenderlo y permitirle pasar por la secuencia de arranque de cinco pasos. En este tema se tratan los conceptos básicos de la configuración de un switch e incluye un laboratorio.
+</br></br>
+Después de encender un switch Cisco, pasa por la siguiente secuencia de inicio de cinco pasos:
+</br></br>
+<ul>
+<li><strong>Paso 1</strong>: Primero, el switch carga un programa de autodiagnóstico al encender (POST) almacenado en la memoria ROM. El POST verifica el subsistema de la CPU. Este comprueba la CPU, la memoria DRAM y la parte del dispositivo flash que integra el sistema de archivos flash.</li>
+<li><strong>Paso 2</strong>: A continuación, el switch carga el software del cargador de arranque. El cargador de arranque es un pequeño programa almacenado en la memoria ROM que se ejecuta inmediatamente después de que el POST se completa correctamente.</li>
+<li><strong>Paso 3</strong>: El cargador de arranque lleva a cabo la inicialización de la CPU de bajo nivel. Inicializa los registros de la CPU, que controlan dónde está asignada la memoria física, la cantidad de memoria y su velocidad.</li>
+<li><strong>Paso 4</strong>: El cargador de arranque inicia el sistema de archivos flash en la placa del sistema.</li>
+<li><strong>Paso 5</strong>: Por último, el cargador de arranque localiza y carga una imagen de software del sistema operativo de IOS en la memoria y delega el control del switch a IOS.</li>
+</ul>
+<h3 id="2-el-comando-boot-system"><a class="header" href="#2-el-comando-boot-system">2. El comando boot system</a></h3>
 <p>Después de encender un switch Cisco, pasa por la siguiente secuencia de inicio de cinco pasos: Si no se establece esta variable, el switch intenta cargar y ejecutar el primer archivo ejecutable que puede encontrar. En los switches de la serie Catalyst 2960, el archivo de imagen generalmente se encuentra en un directorio que tiene el mismo nombre que el archivo de imagen (excepto la extensión de archivo .bin).</p>
 <p>El sistema operativo IOS luego inicializa las interfaces utilizando los comandos Cisco IOS que se encuentran en el archivo de configuración de inicio. Se llama al archivo startup-config config.text y se encuentra en flash.</p>
 <p>En el ejemplo, la variable de entorno BOOT se establece mediante el boot system comando del modo de configuración global. Observe que el IOS se ubica en una carpeta distinta y que se especifica la ruta de la carpeta. Use el comando show boot para ver en qué está configurado el archivo de arranque IOS actual.</p>
-<pre><code class="language-shell">S1(config)# boot system flash:/c2960-lanbasek9-mz.150-2.SE/c2960-lanbasek9-mz.150-2.SE.bin
+<pre><code class="language-shell">S1(config)# boot system flash:/c2960-lanbasek9-mz.150-2.SE/ \
+                        c2960-lanbasek9-mz.150-2.SE.bin
 </code></pre>
+<p>La tabla define cada parte del comando <strong><code>boot system</code></strong>.</p>
+</br>
+<div class="table-wrapper"><table><thead><tr><th>Comando</th><th>Definición</th></tr></thead><tbody>
+<tr><td><strong><code>boot syste</code></strong></td><td>El comando principal</td></tr>
+<tr><td><strong><code>flash:</code></strong></td><td>The storage device</td></tr>
+<tr><td><strong><code>c2960-lanbasek9-mz.150-2.SE/</code></strong></td><td>La ruta al sistema de archivos</td></tr>
+<tr><td><strong><code>c2960-lanbasek9-mz.150-2.SE.bin</code></strong></td><td>El nombre del archivo IOS</td></tr>
+</tbody></table>
+</div>
+<h2 id="3-indicadores-led-del-switch"><a class="header" href="#3-indicadores-led-del-switch">3. Indicadores LED del switch</a></h2>
+<p>Los switches Cisco Catalyst tienen varios indicadores luminosos LED de estado. Puede usar los LED del switch para controlar rápidamente la actividad y el rendimiento del switch. Los diferentes modelos y conjuntos de características de los switches tienen diferentes LED, y la ubicación de estos en el panel frontal del switch también puede variar.</p>
+<p>En la ilustración, se muestran los LED y el botón Mode de un switch Cisco Catalyst 2960.
+<br></p>
+<img src="https://i.ibb.co/hmY3yFq/Pasted-image-20240510152917.png" alt="Pasted-image-20240510152917" border="0">
+<p>El botón Modo (7 en la figura) se usa para alternar entre el estado del puerto, el dúplex del puerto, la velocidad del puerto y, si es compatible, el estado de la alimentación a través de Ethernet (PoE) de los LED del puerto (8 en la figura).</p>
+<ol>
+<li>
+<p><strong>LED del sistema</strong>
+Muestra si el sistema está recibiendo energía y funciona correctamente. Si el LED está apagado, significa que el sistema no está encendido. Si el LED es de color verde, el sistema funciona normalmente. Si el LED es de color ámbar, el sistema recibe alimentación pero no funciona correctamente.</p>
+</li>
+<li>
+<p><strong>LED del sistema de alimentación redundante (RPS)</strong>
+Muestra el estado de RPS. Si el LED está apagado, el RPS está apagado o no está conectado correctamente. Si el LED es de color verde, el RPS está conectado y listo para proporcionar alimentación de respaldo. Si el LED parpadea y es de color verde, el RPS está conectado pero no está disponible porque está proporcionando alimentación a otro dispositivo. Si el LED es de color ámbar, el RPS está en modo de reserva o presenta una falla. Si el LED parpadea y es de color ámbar, la fuente de alimentación interna del switch presenta una falla, y el RPS está proporcionando alimentación.</p>
+</li>
+<li>
+<p><strong>LED de estado del puerto</strong>
+Muestra el estado de RPS. Si el LED está apagado, el RPS está apagado o no está conectado correctamente. Si el LED es de color verde, el RPS está conectado y listo para proporcionar alimentación de respaldo. Si el LED parpadea y es de color verde, el RPS está conectado pero no está disponible porque está proporcionando alimentación a otro dispositivo. Si el LED es de color ámbar, el RPS está en modo de reserva o presenta una falla. Si el LED parpadea y es de color ámbar, la fuente de alimentación interna del switch presenta una falla, y el RPS está proporcionando alimentación.</p>
+</li>
+<li>
+<p><strong>LED de modo dúplex del puerto</strong>
+Indica que el modo dúplex del puerto está seleccionado cuando el LED está verde. Al seleccionarlo, los LED del puerto que están apagados están en modo semidúplex. Si el LED del puerto es de color verde, el puerto está en modo dúplex completo.</p>
+</li>
+<li>
+<p><strong>LED de velocidad del puerto</strong>
+Indica que el modo de velocidad del puerto está seleccionado. Al seleccionarlo, los indicadores LED del puerto muestran colores con diferentes significados. Si el LED está apagado, el puerto está funcionando a 10 Mbps. Si el LED es verde, el puerto está funcionando a 100 Mbps. Si el LED parpadea en verde, el puerto está funcionando a 1000 Mbps.</p>
+</li>
+<li>
+<p><strong>LED de modo de alimentación por Ethernet</strong>
+Si se admite PoE, estará presente un LED de modo PoE. Si el LED está apagado, indica que no se seleccionó el modo de alimentación por Ethernet, que a ninguno de los puertos se le negó el suministro de alimentación y ninguno presenta fallas. Si el LED está parpadeando en ámbar, el modo PoE no está seleccionado, pero al menos uno de los puertos ha sido denegado o tiene una falla PoE. Si el LED es de color verde, indica que se seleccionó el modo de alimentación por Ethernet, y los LED del puerto muestran colores con diferentes significados. Si el LED del puerto está apagado, la alimentación por Ethernet está desactivada. Si el LED del puerto es de color verde, la alimentación por Ethernet está activada. Si el LED del puerto alterna entre verde y ámbar, se niega la alimentación por Ethernet, ya que, si se suministra energía al dispositivo alimentado, se excede la capacidad de alimentación del switch. Si el LED parpadea en ámbar, PoE está apagado debido a una falla. Si el LED es de color ámbar, se inhabilitó la alimentación por Ethernet para el puerto.</p>
+</li>
+</ol>
+<h2 id="recuperarse-de-un-bloqueo-del-sistema"><a class="header" href="#recuperarse-de-un-bloqueo-del-sistema">Recuperarse de un bloqueo del sistema</a></h2>
+<p>El cargador de arranque proporciona acceso al switch si no se puede usar el sistema operativo debido a la falta de archivos de sistema o al daño de estos. El cargador de arranque tiene una línea de comandos que proporciona acceso a los archivos almacenados en la memoria flash.</p>
+<p>Se puede acceder al cargador de arranque mediante una conexión de consola con los siguientes pasos:</p>
+<p><strong>Paso 1</strong>. Conecte una computadora al puerto de consola del switch con un cable de consola. Configure el software de emulación de terminal para conectarse al switch.<br />
+<strong>Paso 2</strong>. Desconecte el cable de alimentación del switch.<br />
+<strong>Paso 3</strong>. Vuelva a conectar el cable de alimentación al interruptor y, en 15 segundos, presione y mantenga presionado el botón <strong>Mode</strong> mientras el LED del sistema todavía parpadea en verde.<br />
+<strong>Paso 4</strong>. Continúe presionando el botón <strong>Mode</strong> hasta que el LED del sistema se vuelva brevemente ámbar y luego verde sólido; luego suelte el botón <strong>Mode</strong>.<br />
+<strong>Paso 5</strong>. The boot loader <strong>switch:</strong> El mensaje aparece en el software de emulación de terminal en la PC.</p>
+<p>Escriba <strong>help</strong> o <strong>?</strong> en el símbolo del gestor de arranque para ver una lista de comandos disponibles.</p>
+<p>De manera predeterminada, el switch intenta iniciarse automáticamente mediante el uso de información en la variable de entorno BOOT. Para ver la ruta de acceso de la variable de entorno BOOT del switch, escriba el comando <strong>set</strong>. A continuación, inicialice el sistema de archivos flash utilizando el comando <strong>flash_init</strong> para ver los archivos actuales en flash, como se muestra en la salida.</p>
+<h1 id="simulación-de-consola-cisco"><a class="header" href="#simulación-de-consola-cisco">Simulación de Consola Cisco</a></h1>
+<div class="console-container" id="terminal"></div>
+<script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
 
                     </main>
 
@@ -194,7 +260,7 @@ Paso 5: Por último, el cargador de arranque localiza y carga una imagen de soft
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../Networking/switching/introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../Networking/switching/frame_forwarding.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -208,29 +274,13 @@ Paso 5: Por último, el cargador de arranque localiza y carga una imagen de soft
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../Networking/switching/introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../Networking/switching/frame_forwarding.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
@@ -248,6 +298,7 @@ Paso 5: Por último, el cargador de arranque localiza y carga una imagen de soft
         <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
+        <script src="../theme/additional.js"></script>
 
 
     </div>
