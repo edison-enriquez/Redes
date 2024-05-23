@@ -32,10 +32,10 @@ La tabla define cada parte del comando **`boot system`**.
 
 | Comando                             | Definición                     |
 | ----------------------------------- | ------------------------------ |
-| **boot syste**                      | El comando principal           |
-| **flash:**                          | The storage device             |
-| **c2960-lanbasek9-mz.150-2.SE/**    | La ruta al sistema de archivos |
-| **c2960-lanbasek9-mz.150-2.SE.bin** | El nombre del archivo IOS      |
+| **`boot syste`**                      | El comando principal           |
+| **`flash:`**                          | The storage device             |
+| **`c2960-lanbasek9-mz.150-2.SE/`**    | La ruta al sistema de archivos |
+| **`c2960-lanbasek9-mz.150-2.SE.bin`** | El nombre del archivo IOS      |
 
 ## 3. Indicadores LED del switch
 
@@ -86,48 +86,3 @@ De manera predeterminada, el switch intenta iniciarse automáticamente mediante 
 <div class="console-container" id="terminal"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const terminal = new Terminal({
-            cols: 80,
-            rows: 24,
-            theme: {
-                background: '#000000',
-                foreground: '#0f0'
-            }
-        });
-        terminal.open(document.getElementById('terminal'));
-
-        const prompt = 'S1(config)# ';
-        terminal.write(prompt);
-
-        let command = '';
-
-        terminal.onKey(e => {
-            const { key, domEvent } = e;
-
-            if (domEvent.key === 'Enter') { // Enter key
-                terminal.write('\r\n');
-                if (command === 'show version') {
-                    terminal.write('Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 15.0(2)SE, RELEASE SOFTWARE (fc1)\r\n');
-                } else if (command.startsWith('boot system')) {
-                    terminal.write('Configuración de boot system actualizada.\r\n');
-                } else {
-                    terminal.write('Comando no reconocido.\r\n');
-                }
-                terminal.write(prompt);
-                command = '';
-            } else if (domEvent.key === 'Backspace') { // Backspace key
-                if (command.length > 0) {
-                    terminal.write('\b \b');
-                    command = command.slice(0, -1);
-                }
-            } else if (!domEvent.ctrlKey && !domEvent.altKey && !domEvent.metaKey) { // Filtra las teclas de control
-                terminal.write(key);
-                command += key;
-            }
-        });
-
-        terminal.focus();
-    });
-</script>

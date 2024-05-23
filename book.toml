@@ -7,7 +7,7 @@ title = "Switching, Routing, y Wireless Essentials"
 
 [output.html]
 additional-css = ["theme/css/additional.css",]
-additional-js = []
+additional-js = ["theme/additional.js"]
 default-theme = "dark"
 preferred-dark-theme = "ayu"
 no-section-label = true

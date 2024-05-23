@@ -104,7 +104,7 @@ Utilice esta actividad para comprobar su comprensión de cómo un switch aprende
 
 **Pregunta 2** - ¿Cuáles de estas afirmaciones sobre el reenvío de una trama por parte del switch son verdaderas?
 
- - [ ] Switch agrega la dirección MAC de origen que actualmente no está en la tabla de direcciones MAC.
+- [ ] Switch agrega la dirección MAC de origen que actualmente no está en la tabla de direcciones MAC.
  - [ ] La trama es una trama de difusión y se reenvía a todos los puertos.
  - [ ] La trama es una trama de unidifusión y se reenvía solamente a un puerto específico.
  - [ ] La trama es una trama de unidifusión y se distribuye por saturación a todos los puertos.

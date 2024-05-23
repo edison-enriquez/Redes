@@ -16,14 +16,34 @@ body {
     color: #0f0; /* Texto verde */
     padding: 10px; /* Espaciado interno */
     font-size: 1.5em; /* Tamaño de fuente ajustado */
+    font-family: monospace;
 }
 
 
 .header {
     background-color: rgba(0, 0, 0, 0.8); /* Fondo negro opaco con 80% de opacidad */
     color: #0f0; /* Texto verde */
-    padding: 10px; /* Espaciado interno */
+     /*padding: 10px;  Espaciado interno */
     font-size: 1.5em; /* Tamaño de fuente ajustado */
+    font-family: monospace;
+}
+
+.chapter-item {
+    color: #0f0; /* Color verde para los items del capítulo */
+    font-family: monospace;
+}
+
+.chapter-item a {
+    color: #0f0 !important; /* Color verde para los enlaces dentro de los items del capítulo */
+}
+
+.chapter-item.expanded {
+    color: #0f0; /* Color azul para los items del capítulo expandido */
+    
+}
+
+.chapter-item.expanded a {
+    color: #0f0 !important; /* Color azul para los enlaces dentro de los items del capítulo expandido */
 }
 
 .console-container {
@@ -112,4 +132,92 @@ code {
     font-family: var(--mono-font) !important;
     font-size: var(--code-font-size);
     direction: ltr !important;
+}
+
+
+
+/* Estilo para el contenedor de la tabla */
+.table-wrapper {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+/* Estilo para la tabla */
+.table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+     /* Fondo oscuro para la tabla */
+}
+
+.table-wrapper th,
+.table-wrapper td {
+    border: 1px solid #0f0; /* Borde verde */
+    padding: 10px;
+    text-align: left;
+}
+
+.table-wrapper th {
+    background-color: #222; /* Fondo más claro para el encabezado */
+    color: #0f0; /* Texto verde */
+}
+
+.table-wrapper td {
+    color: #0f0; /* Texto verde */
+}
+
+.table-wrapper code.hljs {
+    color: #0f0; /* Texto verde */
+    background-color: transparent; /* Fondo transparente para el código */
+}
+
+
+/*************************************/
+#network1, #network2 {
+    position: relative;
+    margin-bottom: 50px; /* Separar las dos redes para claridad */
+}
+
+#networkCanvas1, #networkCanvas2 {
+    border: 1px solid #000;
+    background-color: #ffffff;
+}
+
+.controls {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#playPauseButton1, #playPauseButton2 {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+#progressBar1, #progressBar2 {
+    width: 100%;
+}
+
+.packet {
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    background-color: #800080;
+    color: #ffffff;
+    text-align: center;
+    line-height: 20px;
+    display: none; /* Start hidden */
+    z-index: 10;
+}
+
+.trunk-info {
+    position: absolute;
+    background-color: #FFA500;
+    color: #000000;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    width: 300px;
+    top: 220px;
+    left: 250px;
+    font-size: 12px;
 }
