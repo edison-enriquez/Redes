@@ -94,7 +94,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../homepage.html">Nwtworking - Home</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/introduction.html">Configuración básica de dispositivos</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/basic_Config_of_switch.html">Configuración de parámetros iniciales de un switch</a></li></ol></li><li class="chapter-item "><a href="../../Networking/switching/frame_forwarding.html">Conceptos de switching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/switching/introduction.html">Configuración de puertos de un switch</a></li><li class="chapter-item "><a href="../../Networking/switching/collision_and_broadcast_domains.html">Dominios de switching</a></li></ol></li><li class="chapter-item expanded "><a href="../../Networking/VLAN/introduction.html">VLANs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Networking/VLAN/VLANs_in_a_Multi_Switched_Environment.html" class="active">Redes VLAN en un entorno conmutado múltiple</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLANs_config.html">Configuración de VLAN</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLAN_Trunks.html">Enlaces troncales de la VLAN</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../homepage.html">Nwtworking - Home</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/introduction.html">Configuración básica de dispositivos</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/basic_Config_of_switch.html">Configuración de parámetros iniciales de un switch</a></li></ol></li><li class="chapter-item "><a href="../../Networking/switching/frame_forwarding.html">Conceptos de switching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/switching/introduction.html">Configuración de puertos de un switch</a></li><li class="chapter-item "><a href="../../Networking/switching/collision_and_broadcast_domains.html">Dominios de switching</a></li></ol></li><li class="chapter-item expanded "><a href="../../Networking/VLAN/introduction.html">VLANs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Networking/VLAN/VLANs_in_a_Multi_Switched_Environment.html" class="active">Redes VLAN en un entorno conmutado múltiple</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLANs_config.html">Configuración de VLAN</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLAN_Trunks.html">Enlaces troncales de la VLAN</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLAN_configuration_example.html">Ejemplo de Configuración de una VLAN - CISCO</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -187,7 +187,7 @@ Un enlace troncal no pertenece a una VLAN específica. Es más bien un conducto 
 </br></br>
 En la figura, los enlaces entre los switches S1 y S2, y S1 y S3 se configuraron para transmitir el tráfico proveniente de las VLAN 10, 20, 30 y 99 a través de la red. Esta red no podría funcionar sin los enlaces troncales de VLAN.
 </br></br></p>
-<p><img src="image-1.png" alt="alt text" /></p>
+<p><img src="./images/image-1.png" alt="alt text" /></p>
 <h2 id="redes-sin-vlan"><a class="header" href="#redes-sin-vlan">Redes sin VLAN</a></h2>
 <p></br></br>
 En condiciones normales de funcionamiento, cuando un switch recibe una trama de difusión en uno de sus puertos, reenvía la trama por todos los demás puertos, excepto el puerto por donde recibió la difusión. En la animación de la figura se configuró toda la red en la misma subred (172.17.40.0/24), y no se configuró ninguna VLAN. Como consecuencia, cuando la computadora del cuerpo docente (PC1) envía una trama de difusión, el switch S2 envía dicha trama de difusión por todos sus puertos. Finalmente, toda la red recibe la difusión porque la red es un dominio de difusión.
@@ -236,7 +236,7 @@ Identificador de Formato Canónico (CFI) - Es un identificador de 1 bit que habi
 </ul>
 <p><strong>VLAN ID (VID)</strong> - Es un número de identificación de VLAN de 12 bits que admite hasta 4096 ID de VLAN.
 Una vez que el switch introduce los campos tipo y de información de control de etiquetas, vuelve a calcular los valores de la FCS e inserta la nueva FCS en la trama.</p>
-<p><img src="image-4.png" alt="alt text" /></p>
+<p><img src="./images/image-4.png" alt="alt text" /></p>
 <h2 id="vlan-nativas-y-etiquetado-de-8021q"><a class="header" href="#vlan-nativas-y-etiquetado-de-8021q">VLAN nativas y etiquetado de 802.1Q</a></h2>
 <p>El estándar IEEE 802.1Q especifica una VLAN nativa para los enlaces troncal, que por defecto es VLAN 1. Cuando un marco sin etiqueta llega a un puerto troncal, se asigna a la VLAN nativa. Las tramas de administración que se envían entre conmutadores es un ejemplo de tráfico que normalmente no se etiqueta. Si el vínculo entre dos switches es un tronco, el switch envía el tráfico sin etiqueta en la VLAN nativa.</p>
 <h3 id="marcos-etiquetados-en-la-vlan-nativa"><a class="header" href="#marcos-etiquetados-en-la-vlan-nativa">Marcos etiquetados en la VLAN nativa</a></h3>
@@ -244,7 +244,7 @@ Una vez que el switch introduce los campos tipo y de información de control de 
 <h3 id="marcos-sin-etiquetas-en-la-vlan-nativa"><a class="header" href="#marcos-sin-etiquetas-en-la-vlan-nativa">Marcos sin etiquetas en la VLAN nativa</a></h3>
 <p>Cuando un puerto de enlace troncal de un switch Cisco recibe tramas sin etiquetar (poco usuales en las redes bien diseñadas), envía esas tramas a la VLAN nativa. Si no hay dispositivos asociados a la VLAN nativa (lo que es usual) y no existen otros puertos de enlace troncal (es usual), se descarta la trama. La VLAN nativa predeterminada es la VLAN 1. Al configurar un puerto de enlace troncal 802.1Q, se asigna el valor de la ID de VLAN nativa a la ID de VLAN de puerto (PVID) predeterminada. Todo el tráfico sin etiquetar entrante o saliente del puerto 802.1Q se reenvía según el valor de la PVID. Por ejemplo, si se configura la VLAN 99 como VLAN nativa, la PVID es 99, y todo el tráfico sin etiquetar se reenvía a la VLAN 99. Si no se volvió a configurar la VLAN nativa, el valor de la PVID se establece en VLAN 1.</p>
 <p>En la ilustración, la PC1 está conectada a un enlace troncal 802.1Q mediante un hub.
-<img src="image-5.png" alt="alt text" />
+<img src="./images/image-5.png" alt="alt text" />
 </br></br>
 La PC1 envía el tráfico sin etiquetar, que los switches asocian a la VLAN nativa configurada en los puertos de enlace troncal y que reenvían según corresponda. El tráfico etiquetado del enlace troncal que recibe la PC1 se descarta. Esta situación refleja un diseño de red deficiente por varios motivos: utiliza un hub, tiene un host conectado a un enlace troncal y esto implica que los switches tengan puertos de acceso asignados a la VLAN nativa. También ilustra la motivación de la especificación IEEE 802.1Q para que las VLAN nativas sean un medio de manejo de entornos antiguos.</p>
 <h2 id="etiquetado-de-vlan-de-voz"><a class="header" href="#etiquetado-de-vlan-de-voz">Etiquetado de VLAN de voz</a></h2>
@@ -268,7 +268,7 @@ El puerto de acceso del switch envía paquetes CDP que indican al teléfono IP c
 <li>En la figura, la computadora del estudiante PC5 está conectada a un teléfono IP de Cisco, y el teléfono está conectado al switch S3. La VLAN 150 está diseñada para transportar tráfico de voz, mientras que la PC5 está en la VLAN 20, que se usa para los datos de los estudiantes.
 </br></br></li>
 </ul>
-<p><img src="image-6.png" alt="alt text" /></p>
+<p><img src="./images/image-6.png" alt="alt text" /></p>
 <h2 id="ejemplo-de-verificación-de-vlan-de-voz"><a class="header" href="#ejemplo-de-verificación-de-vlan-de-voz">Ejemplo de verificación de VLAN de voz</a></h2>
 <p>Se muestra la salida de ejemplo para el show interface fa0/18 switchport comando. El análisis de los comandos de voz de Cisco IOS excede el ámbito de este curso, pero las áreas resaltadas en el resultado de ejemplo muestran que la interfaz F0/18 se configuró con una VLAN configurada para datos (VLAN 20) y una VLAN configurada para voz (VLAN 150).</p>
 <pre><code class="language-shell">S1# show interfaces fa0/18 switchport  
@@ -285,7 +285,7 @@ Administrative Native VLAN tagging: enabled
 Voice VLAN: 150 (voice) 
 </code></pre>
 <h3 id="preguntas"><a class="header" href="#preguntas">Preguntas</a></h3>
-<p><img src="image-7.png" alt="alt text" /></p>
+<p><img src="./images/image-7.png" alt="alt text" /></p>
 <p>La PC1 envía una trama de difusión ARP. ¿Qué PC recibirá el marco de difusión ARP?
 </br></br></p>
 <ul>
@@ -301,7 +301,7 @@ PC5</li>
 PC6
 </br></br></li>
 </ul>
-<p><img src="image-8.png" alt="alt text" /></p>
+<p><img src="./images/image-8.png" alt="alt text" /></p>
 <p>La PC1 envía una trama de difusión ARP. ¿Qué PC recibirá el marco de difusión ARP?
 </br></br></p>
 <ul>
@@ -317,7 +317,7 @@ PC5</li>
 PC6
 </br></br></li>
 </ul>
-<p><img src="image-9.png" alt="alt text" />
+<p><img src="./images/image-9.png" alt="alt text" />
 La PC3 envía una trama de difusión ARP. ¿Qué PC recibirá el marco de difusión ARP?
 </br></br></p>
 <ul>

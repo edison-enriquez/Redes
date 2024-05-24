@@ -64,7 +64,7 @@ function setupNetwork1() {
     document.body.appendChild(packetElement);
 
     const img = new Image();
-    img.src = 'image-2.png';
+    img.src = './images/image-2.png';
     img.onload = function() {
         canvas.width = img.width;
         canvas.height = img.height;
@@ -164,7 +164,7 @@ function setupNetwork2() {
     document.body.appendChild(packetElement);
 
     const img = new Image();
-    img.src = 'image-3.png';
+    img.src = './images/image-3.png';
     img.onload = function() {
         canvas.width = img.width;
         canvas.height = img.height;
