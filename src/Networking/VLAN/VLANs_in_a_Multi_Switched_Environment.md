@@ -11,7 +11,7 @@ Un enlace troncal no pertenece a una VLAN específica. Es más bien un conducto 
 En la figura, los enlaces entre los switches S1 y S2, y S1 y S3 se configuraron para transmitir el tráfico proveniente de las VLAN 10, 20, 30 y 99 a través de la red. Esta red no podría funcionar sin los enlaces troncales de VLAN.
 </br></br>
 
-![alt text](image-1.png)
+![alt text](./images/image-1.png)
 
 ## Redes sin VLAN
 </br></br>
@@ -71,7 +71,7 @@ Identificador de Formato Canónico (CFI) - Es un identificador de 1 bit que habi
 **VLAN ID (VID)** - Es un número de identificación de VLAN de 12 bits que admite hasta 4096 ID de VLAN.
 Una vez que el switch introduce los campos tipo y de información de control de etiquetas, vuelve a calcular los valores de la FCS e inserta la nueva FCS en la trama.
 
-![alt text](image-4.png)
+![alt text](./images/image-4.png)
 
 
 ## VLAN nativas y etiquetado de 802.1Q
@@ -86,7 +86,7 @@ Algunos dispositivos que admiten los enlaces troncales agregan una etiqueta VLAN
 Cuando un puerto de enlace troncal de un switch Cisco recibe tramas sin etiquetar (poco usuales en las redes bien diseñadas), envía esas tramas a la VLAN nativa. Si no hay dispositivos asociados a la VLAN nativa (lo que es usual) y no existen otros puertos de enlace troncal (es usual), se descarta la trama. La VLAN nativa predeterminada es la VLAN 1. Al configurar un puerto de enlace troncal 802.1Q, se asigna el valor de la ID de VLAN nativa a la ID de VLAN de puerto (PVID) predeterminada. Todo el tráfico sin etiquetar entrante o saliente del puerto 802.1Q se reenvía según el valor de la PVID. Por ejemplo, si se configura la VLAN 99 como VLAN nativa, la PVID es 99, y todo el tráfico sin etiquetar se reenvía a la VLAN 99. Si no se volvió a configurar la VLAN nativa, el valor de la PVID se establece en VLAN 1.
 
 En la ilustración, la PC1 está conectada a un enlace troncal 802.1Q mediante un hub.
-![alt text](image-5.png)
+![alt text](./images/image-5.png)
 </br></br>
 La PC1 envía el tráfico sin etiquetar, que los switches asocian a la VLAN nativa configurada en los puertos de enlace troncal y que reenvían según corresponda. El tráfico etiquetado del enlace troncal que recibe la PC1 se descarta. Esta situación refleja un diseño de red deficiente por varios motivos: utiliza un hub, tiene un host conectado a un enlace troncal y esto implica que los switches tengan puertos de acceso asignados a la VLAN nativa. También ilustra la motivación de la especificación IEEE 802.1Q para que las VLAN nativas sean un medio de manejo de entornos antiguos.
 
@@ -109,7 +109,7 @@ El puerto de acceso del switch envía paquetes CDP que indican al teléfono IP c
 - En la figura, la computadora del estudiante PC5 está conectada a un teléfono IP de Cisco, y el teléfono está conectado al switch S3. La VLAN 150 está diseñada para transportar tráfico de voz, mientras que la PC5 está en la VLAN 20, que se usa para los datos de los estudiantes.
 </br></br>
 
-![alt text](image-6.png)
+![alt text](./images/image-6.png)
 
 
 ## Ejemplo de verificación de VLAN de voz
@@ -133,7 +133,7 @@ Voice VLAN: 150 (voice)
 
 ### Preguntas
 
-![alt text](image-7.png)
+![alt text](./images/image-7.png)
 
 La PC1 envía una trama de difusión ARP. ¿Qué PC recibirá el marco de difusión ARP?
 </br></br>
@@ -145,7 +145,7 @@ La PC1 envía una trama de difusión ARP. ¿Qué PC recibirá el marco de difusi
 - [ ] PC6
 </br></br>
 
-![alt text](image-8.png)
+![alt text](./images/image-8.png)
 
 La PC1 envía una trama de difusión ARP. ¿Qué PC recibirá el marco de difusión ARP?
 </br></br>
@@ -158,7 +158,7 @@ La PC1 envía una trama de difusión ARP. ¿Qué PC recibirá el marco de difusi
 </br></br>
 
 
-![alt text](image-9.png)
+![alt text](./images/image-9.png)
 La PC3 envía una trama de difusión ARP. ¿Qué PC recibirá el marco de difusión ARP?
 </br></br>
 
