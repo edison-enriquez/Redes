@@ -1,0 +1,333 @@
+<!DOCTYPE HTML>
+<html lang="en" class="dark" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Guía de configuración de enrutamiento estático - Switching, Routing, y Wireless Essentials</title>
+
+
+        <!-- Custom HTML head -->
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Guía de configuración de enrutamiento estático - Switching, Routing, y Wireless Essentials</title>
+            <link rel="stylesheet" href="/css/custom.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+</head>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../theme/css/additional.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "dark";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('dark')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../homepage.html">Nwtworking - Home</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/introduction.html">Configuración básica de dispositivos</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/basic_Config_of_switch.html">Configuración de parámetros iniciales de un switch</a></li></ol></li><li class="chapter-item expanded "><a href="../../Networking/switching/frame_forwarding.html">Conceptos de switching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/switching/introduction.html">Configuración de puertos de un switch</a></li><li class="chapter-item "><a href="../../Networking/switching/collision_and_broadcast_domains.html">Dominios de switching</a></li><li class="chapter-item expanded "><a href="../../Networking/switching/Static_Routing_Configuration_Guide.html" class="active">Guía de configuración de enrutamiento estático</a></li></ol></li><li class="chapter-item "><a href="../../Networking/VLAN/introduction.html">VLANs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/VLAN/VLANs_in_a_Multi_Switched_Environment.html">Redes VLAN en un entorno conmutado múltiple</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLANs_config.html">Configuración de VLAN</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLAN_Trunks.html">Enlaces troncales de la VLAN</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLAN_configuration_example.html">Ejemplo de Configuración de una VLAN - CISCO</a></li></ol></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Switching, Routing, y Wireless Essentials</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="guía-de-configuración-de-enrutamiento-estático"><a class="header" href="#guía-de-configuración-de-enrutamiento-estático">Guía de configuración de enrutamiento estático</a></h1>
+<p>Este tutorial explica cómo configurar el enrutamiento estático en enrutadores. Se aplica el crear y administrar rutas estáticas en enrutadores a través de un ejemplo de rastreador de paquetes.</p>
+<p>Las rutas estáticas son las rutas que agrega manualmente a la tabla de enrutamiento del enrutador. El proceso de agregar rutas estáticas a la tabla de enrutamiento se conoce como enrutamiento estático. Tomemos un ejemplo de seguimiento de paquetes para comprender cómo utilizar el enrutamiento estático para crear y agregar una ruta estática a la tabla de enrutamiento.</p>
+<h2 id="montar-un-laboratorio-de-práctica"><a class="header" href="#montar-un-laboratorio-de-práctica">Montar un laboratorio de práctica</a></h2>
+<p>Crea un laboratorio de seguimiento de paquetes como se muestra en la imagen o descargue laboratorio creado previamente y abrelo en Packet Tracer <a href="./labs/01-static-routing-example-network.pkt"><code>Click HERE</code></a>.
+<br/><br/>
+<img src="image.png" alt="alt text" />
+<br/><br/>
+En esta práctica de laboratorio, cada red tiene dos rutas para llegar. Configuraremos una ruta como ruta principal y otra ruta como ruta de respaldo. Si el ancho de banda del enlace de todas las rutas es el mismo, utilizamos la ruta que tiene la menor cantidad de enrutadores como ruta principal. Si el ancho de banda del enlace y la cantidad de enrutadores son iguales, podemos usar cualquier ruta como ruta principal y otra ruta como ruta de respaldo.
+<br/><br/>
+Si especificamos dos rutas para el mismo destino, el enrutador selecciona automáticamente la mejor ruta para el destino y agrega la ruta a la tabla de enrutamiento. Si desea seleccionar manualmente una ruta que el enrutador debe agregar a la tabla de enrutamiento, debe establecer el valor AD de la ruta más bajo que otras rutas. Por ejemplo, si utiliza los siguientes comandos para crear dos rutas estáticas para la red 30.0.0/8, la ruta colocará la primera ruta en la tabla de enrutamiento.</p>
+<pre><code class="language-bash">#ip route 30.0.0.0 255.0.0.0 20.0.0.2 10
+#ip route 30.0.0.0 255.0.0.0 40.0.0.2 20
+</code></pre>
+<p>Si la primera ruta falla, el enrutador agrega automáticamente la segunda ruta a la tabla de enrutamiento.</p>
+<h2 id="crear-agregar-y-verificar-rutas-estáticas"><a class="header" href="#crear-agregar-y-verificar-rutas-estáticas">Crear, agregar y verificar rutas estáticas</a></h2>
+<p>Los enrutadores aprenden automáticamente sus redes conectadas. Sólo necesitamos agregar rutas para las redes que no están disponibles en las interfaces del enrutador. Por ejemplo, las redes 10.0.0.0/8, 20.0.0.0/8 y 40.0.0.0/8 están conectadas directamente al Router0. Por lo tanto, no necesitamos configurar rutas para estas redes. La red 30.0.0.0/8 y la red 50.0.0.0/8 no están disponibles en el Router0. Tenemos que crear y agregar rutas solo para estas redes.</p>
+<p>La siguiente tabla enumera las redes conectadas de cada enrutador.</p>
+<p>|Router	|Redes disponibles en interfaces locales	|Redes disponibles en las interfaces de otros enrutadores|
+|--|--|
+|Router0	|10.0.0.0/8, 20.0.0.0/8, 40.0.0.0/8	|30.0.0.0/8, 50.0.0.0/8|
+|Router1	|20.0.0.0/8, 30.0.0.0/8, 50.0.0.0/8	|10.0.0.0/8, 40.0.0.0/8|
+|Router2	|40.0.0.0/8, 50.0.0.0/8	10.0.0.0/8, |20.0.0.0/8, 30.0.0.0/8|</p>
+<p>Creemos rutas estáticas en cada enrutador para redes que no están disponibles en el enrutador.</p>
+<h2 id="requisitos-del-router0"><a class="header" href="#requisitos-del-router0">Requisitos del Router0</a></h2>
+<ul>
+<li>Cree dos rutas para la red 30.0.0.0/8 y configure la primera ruta (a través de -Router1) como ruta principal y la segunda ruta (a través de-Router2) como ruta de respaldo.</li>
+<li>Cree dos rutas para el host 30.0.0.100/8 y configure la primera ruta (a través de -Router2) como ruta principal y la segunda ruta (a través de-Router1) como ruta de respaldo.
+*Cree dos rutas para la red 50.0.0.0/8 y configure la primera ruta (a través de -Router2) como ruta principal y la segunda ruta (a través de-Router1) como ruta de respaldo.</li>
+<li>Verifique que el enrutador agregue solo rutas principales a la tabla de enrutamiento.</li>
+</ul>
+<h2 id="configuración-del-router0"><a class="header" href="#configuración-del-router0">Configuración del Router0</a></h2>
+<p>Acceda al indicador CLI de Router0 y ejecute los siguientes comandos.</p>
+<pre><code class="language-bash">Router&gt;enable
+Router#configure terminal
+Enter configuration commands, one per line. End with CNTL/Z.
+Router(config)#ip route 30.0.0.0 255.0.0.0 20.0.0.2 10
+Router(config)#ip route 30.0.0.0 255.0.0.0 40.0.0.2 20
+Router(config)#ip route 30.0.0.100 255.255.255.255 40.0.0.2 10
+Router(config)#ip route 30.0.0.100 255.255.255.255 20.0.0.2 20
+Router(config)#ip route 50.0.0.0 255.0.0.0 40.0.0.2 10
+Router(config)#ip route 50.0.0.0 255.0.0.0 20.0.0.2 20
+Router(config)#exit
+Router#show ip route static
+30.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+S 30.0.0.0/8 [10/0] via 20.0.0.2
+S 30.0.0.100/32 [10/0] via 40.0.0.2
+S 50.0.0.0/8 [10/0] via 40.0.0.2
+Router#
+</code></pre>
+<h2 id="requisitos-del-router-1"><a class="header" href="#requisitos-del-router-1">Requisitos del Router 1</a></h2>
+<ul>
+<li>Cree dos rutas para la red 10.0.0.0/8 y configure la primera ruta (a través de -Router0) como ruta principal y la segunda ruta (a través de-Router1) como ruta de respaldo.</li>
+<li>Cree dos rutas para la red 40.0.0.0/8 y configure la primera ruta (a través de -Router0) como ruta principal y la segunda ruta (a través de-Router2) como ruta de respaldo.</li>
+<li>Verifique que el enrutador agregue solo rutas principales a la tabla de enrutamiento.</li>
+</ul>
+<h3 id="configuración-del-router-1"><a class="header" href="#configuración-del-router-1">Configuración del Router 1</a></h3>
+<pre><code class="language-bash">Router&gt;enable
+Router#configure terminal
+Enter configuration commands, one per line. End with CNTL/Z.
+Router(config)#ip route 10.0.0.0 255.0.0.0 20.0.0.1 10
+Router(config)#ip route 10.0.0.0 255.0.0.0 50.0.0.1 20
+Router(config)#ip route 40.0.0.0 255.0.0.0 20.0.0.1 10
+Router(config)#ip route 40.0.0.0 255.0.0.0 50.0.0.1 20
+Router(config)#exit
+Router#show ip route static
+S 10.0.0.0/8 [10/0] via 20.0.0.1
+S 40.0.0.0/8 [10/0] via 20.0.0.1
+Router#
+</code></pre>
+<h2 id="requisitos-del-router-2"><a class="header" href="#requisitos-del-router-2">Requisitos del router 2</a></h2>
+<p>Cree rutas estáticas para la red 10.0.0.0/8 y la red 30.0.0.0/8 y verifique que el enrutador agregue ambas rutas a la tabla de enrutamiento.</p>
+<h3 id="configuración-del-router2"><a class="header" href="#configuración-del-router2">Configuración del Router2</a></h3>
+<pre><code class="language-bash">Router&gt;enable
+Router#configure terminal
+Enter configuration commands, one per line. End with CNTL/Z.
+Router(config)#ip route 10.0.0.0 255.0.0.0 40.0.0.1
+Router(config)#ip route 30.0.0.0 255.0.0.0 50.0.0.2
+Router(config)#exit
+Router#show ip route static
+S 10.0.0.0/8 [1/0] via 40.0.0.1
+S 30.0.0.0/8 [1/0] via 50.0.0.2
+Router#
+</code></pre>
+<h2 id="verificación-del-enrutamiento-estático"><a class="header" href="#verificación-del-enrutamiento-estático">Verificación del enrutamiento estático</a></h2>
+<p>En Router0, configuramos dos rutas para la red 30.0.0.0/8. Estas rutas son a través del Router1 y del Router2. Establecemos la primera ruta (vía-Router1) como ruta principal y la segunda ruta como ruta de respaldo. Podemos verificar esta configuración de dos maneras.</p>
+<p>Enviando solicitudes de ping a una PC de la red 30.0.0.0/8 y rastreando la ruta que toman para llegar a la red 30.0.0.0/8. Para esto, puede usar el comando 'tracert' en una PC de la red 10.0.0.0/8. El comando 'tracert' envía solicitudes de ping al host de destino y rastrea la ruta que toman para llegar al destino.</p>
+<p>Enumerando las entradas de la tabla de enrutamiento en Router0. Dado que un enrutador usa la tabla de enrutamiento para reenviar paquetes de datos, puede consultar la tabla de enrutamiento para determinar la ruta que usa el enrutador para reenviar paquetes de datos para cada destino.</p>
+<p>La siguiente imagen muestra las pruebas anteriores</p>
+<p><img src="image-1.png" alt="alt text" /></p>
+<p>También configuramos una ruta de host estática separada para el host 30.0.0.100/8. El enrutador debe utilizar esta ruta para reenviar paquetes de datos al host 30.0.0.100/8. Para verificar esto, puede realizar la misma prueba para el host 30.0.0.100/8.</p>
+<p>La siguiente imagen muestra esta prueba.</p>
+<p><img src="image-2.png" alt="alt text" /></p>
+<h2 id="eliminar-una-ruta-estática"><a class="header" href="#eliminar-una-ruta-estática">Eliminar una ruta estática</a></h2>
+<p>Para eliminar una ruta estática, siga los siguientes pasos.</p>
+<ul>
+<li>Utilice el comando '<code>show ip route static</code>' para imprimir todas las rutas estáticas.
+Anota la ruta que deseas eliminar.</li>
+<li>Utilice el comando '<code>no ip route</code>' para eliminar la ruta.
+Si tiene una ruta de respaldo, la ruta de respaldo se convierte en la ruta principal cuando elimina la ruta principal.</li>
+</ul>
+<p>En nuestro ejemplo, tenemos una ruta de respaldo y una ruta principal para el host 30.0.0.100/8.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Networking/switching/collision_and_broadcast_domains.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../Networking/VLAN/introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Networking/switching/collision_and_broadcast_domains.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../Networking/VLAN/introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../theme/additional.js"></script>
+
+
+    </div>
+    </body>
+</html>
