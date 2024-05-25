@@ -20,3 +20,6 @@ enable = false
 [output.html.fold]
 enable = true
 level = 0
+
+[preprocessor.tabs]
+command = ["python", "tabs_preprocessor.py"]
