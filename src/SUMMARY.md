@@ -6,6 +6,7 @@
     - [Conceptos de switching](./Networking/switching/frame_forwarding.md)
         - [Configuración de puertos de un switch](./Networking/switching/introduction.md)
         - [Dominios de switching](./Networking/switching/collision_and_broadcast_domains.md)
+        - [Guía de configuración de enrutamiento estático](./Networking/switching/Static_Routing_Configuration_Guide.md)
     - [VLANs](./Networking/VLAN/introduction.md)
         - [Redes VLAN en un entorno conmutado múltiple](./Networking/VLAN/VLANs_in_a_Multi_Switched_Environment.md)
         - [Configuración de VLAN](./Networking/VLAN/VLANs_config.md)
