@@ -1,0 +1,437 @@
+<!DOCTYPE HTML>
+<html lang="en" class="dark" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Rutas IP estáticas - Switching, Routing, y Wireless Essentials</title>
+
+
+        <!-- Custom HTML head -->
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Rutas IP estáticas - Switching, Routing, y Wireless Essentials</title>
+            <link rel="stylesheet" href="/css/custom.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+</head>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+        
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../theme/css/additional.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "dark";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('dark')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../homepage.html">Nwtworking - Home</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/introduction.html">Configuración básica de dispositivos</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/basic_Config_of_switch.html">Configuración de parámetros iniciales de un switch</a></li></ol></li><li class="chapter-item "><a href="../../Networking/switching/frame_forwarding.html">Conceptos de switching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/switching/introduction.html">Configuración de puertos de un switch</a></li><li class="chapter-item "><a href="../../Networking/switching/collision_and_broadcast_domains.html">Dominios de switching</a></li></ol></li><li class="chapter-item "><a href="../../Networking/VLAN/introduction.html">VLANs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/VLAN/VLANs_in_a_Multi_Switched_Environment.html">Redes VLAN en un entorno conmutado múltiple</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLANs_config.html">Configuración de VLAN</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLAN_Trunks.html">Enlaces troncales de la VLAN</a></li><li class="chapter-item "><a href="../../Networking/VLAN/VLAN_configuration_example.html">Ejemplo de Configuración de una VLAN - CISCO</a></li></ol></li><li class="chapter-item "><a href="../../Networking/DHCPv4/DHCPv4_Concepts.html">DHCPv4</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/DHCPv4/Configure_a_Cisco_IOS_DHCPv4_Server.html">DHCPv4</a></li><li class="chapter-item "><a href="../../Networking/DHCPv4/Configure_a_DHCPv4_Client.html">DHCPv4</a></li><li class="chapter-item "><a href="../../Networking/DHCPv4/DHCPv4_Module_Practice.html">DHCPv4</a></li></ol></li><li class="chapter-item "><a href="../../Networking/routing/Routing_Concepts.html">Conceptos de enrutamient0</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/routing/Path_Determination.html">Determinación de trayecto</a></li><li class="chapter-item "><a href="../../Networking/routing/Packet_Forwarding.html">Reenvío de paquetes</a></li><li class="chapter-item "><a href="../../Networking/routing/Basic_Router_Configuration_Review.html">Configuración básica de un router</a></li><li class="chapter-item "><a href="../../Networking/routing/IP_Routing_Table.html">Tabla de routing IP</a></li><li class="chapter-item "><a href="../../Networking/Static_and_Dynamic_Routing.html">Enrutamiento estático y dinámico</a></li></ol></li><li class="chapter-item expanded "><a href="../../Networking/routing/Static_Routes.html" class="active">Rutas IP estáticas</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Networking/routing/Configure_IP_Static_Routes.html">Configuración de rutas estáticas IP</a></li><li class="chapter-item "><a href="../../Networking/routing/Default_Static_Route.html">Configuración de rutas estáticas predeterminadas IP</a></li><li class="chapter-item "><a href="../../Networking/routing/Floating_Static_Routes.html">Configuración de rutas estáticas flotantes</a></li><li class="chapter-item "><a href="../../Networking/routing/Host_Routes.html">Configuración de rutas de host estáticas</a></li><li class="chapter-item "><a href="../../Networking/routing/Static_Routing_Configuration_Guide.html">Guía de configuración de enrutamiento estático</a></li></ol></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Switching, Routing, y Wireless Essentials</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="rutas-ip-estáticas"><a class="header" href="#rutas-ip-estáticas">Rutas IP estáticas</a></h1>
+<h2 id="tipos-de-rutas-estáticas"><a class="header" href="#tipos-de-rutas-estáticas">Tipos de rutas estáticas</a></h2>
+<p>Las rutas estáticas se implementan comúnmente en una red. Esto es cierto incluso cuando hay un protocolo de enrutamiento dinámico configurado. Por ejemplo, una organización podría configurar una ruta estática predeterminada para el proveedor de servicios y anunciar esta ruta a otros routers corporativos mediante el protocolo de enrutamiento dinámico.</p>
+<p>Las rutas estáticas se pueden configurar para IPv4 e IPv6. Ambos protocolos admiten los siguientes tipos de rutas estáticas:</p>
+<ul>
+<li>Ruta estática estándar</li>
+<li>Ruta estática predeterminada</li>
+<li>Ruta estática flotante</li>
+<li>Ruta estática resumida</li>
+</ul>
+<p>Las rutas estáticas se configuran con el comando ip route y el de ipv6 route configuración global.</p>
+<h2 id="opciones-de-siguiente-salto"><a class="header" href="#opciones-de-siguiente-salto">Opciones de siguiente salto</a></h2>
+<p>El siguiente salto se puede identificar mediante una dirección IP, una interfaz de salida, o ambas cuando se está configurando una ruta estática. El modo en que se especifica el destino genera uno de los siguientes tres tipos de ruta:</p>
+<p>Ruta del siguiente salto - Solo se especifica la dirección IP del siguiente salto
+Ruta estática conectada directamente - Solo se especifica la interfaz de salida del router
+Ruta estática totalmente especificada - Se especifican la dirección IP del siguiente salto y la interfaz de salida</p>
+<h3 id="comando-de-ruta-estática-ipv4"><a class="header" href="#comando-de-ruta-estática-ipv4">Comando de ruta estática IPv4</a></h3>
+<p>Las rutas estáticas IPv4 se configuran con el siguiente comando global:</p>
+<pre><code class="language-bash">Router(config)# ip route network-address subnet-mask { ip-address | exit-intf [ip-address]} [distance]
+</code></pre>
+<p>Nota: Se deben configurar los parámetros ip-address, exit-intf, o ip-address y exit-intf .</p>
+<p>La tabla describe los ip route parámetros para el comando.</p>
+<div class="table-wrapper"><table><thead><tr><th>Parámetro</th><th>Descripción</th></tr></thead><tbody>
+<tr><td><code>network-address</code></td><td>Identifica la dirección de red IPv4 de destino de la red remota para agregar a la tabla de enrutamiento.</td></tr>
+<tr><td><code>subnet-mask </code></td><td>Identifica la máscara de subred de la red remota.La máscara de subred puede modificarse para resumir un grupo de redes y crear una ruta estática resumida.</td></tr>
+<tr><td><code>ip-address</code></td><td>Identifica la dirección IPv4 del router de siguiente salto. <br> Normalmente se utiliza con redes de difusión (es decir, Ethernet).<br> Podría crear una ruta estática recursiva donde el router realice una búsqueda adicional para encontrar la interfaz de salida.</td></tr>
+<tr><td><code>exit-intf</code></td><td>Identifica la interfaz de salida para reenviar paquetes.Crea una ruta estática conectada directamente. <br>Suele utilizarse para conectarse en una configuración punto a punto.</td></tr>
+<tr><td><code>exit-intf ip-address</code></td><td>Crea una ruta estática completamente especificada porque especifica la interfaz de salida y la dirección IPv4 de salto siguiente.</td></tr>
+<tr><td><code>distance</code></td><td>Comando opcional que se puede utilizar para asignar un valor administrativo de distancia entre 1 y 255. <br>Suele utilizarse para configurar una ruta estática flotante al establecer una distancia administrativa mayor a la de una ruta dinámica predeterminada.</td></tr>
+</tbody></table>
+</div>
+<h3 id="comando-de-ruta-estática-ipv6"><a class="header" href="#comando-de-ruta-estática-ipv6">Comando de ruta estática IPv6</a></h3>
+<p>Las rutas estáticas IPv6 se configuran con el siguiente comando global:</p>
+<pre><code class="language-bash">Router(config)# ipv6 route ipv6-prefix/prefix-length {ipv6-address | exit-intf [ipv6-address]} [distance]
+</code></pre>
+<p>La mayoría de los parámetros son idénticos a la versión IPv4 del comando.</p>
+<p>La tabla muestra los distintos parámetros del comando <code>ipv6 route</code> y sus descripciones.</p>
+<div class="table-wrapper"><table><thead><tr><th>Parámetro</th><th>Descripción</th></tr></thead><tbody>
+<tr><td>ipv6-prefix</td><td>Identifica la dirección de la red IPv6 de destino de la red remota para agregar a la tabla de enrutamiento.</td></tr>
+<tr><td>/prefix-length</td><td>Identifica la longitud del prefijo de la red remota.</td></tr>
+<tr><td>ipv6-address</td><td></td></tr>
+<tr><td>Identifica la dirección IPv6 del router de siguiente salto.<br>Normalmente se utiliza con redes de difusión (por ejemplo, Ethernet)<br>Podría crear una ruta estática recursiva donde el router realice una búsqueda adicional para encontrar la interfaz de salida.</td><td></td></tr>
+<tr><td>exit-intf</td><td>Identifica la interfaz de salida para reenviar paquetes.<br>Crea una ruta estática conectada directamente.<br>Suele utilizarse para conectarse en una configuración punto a punto.</td></tr>
+<tr><td>exit-intf ipv6-address</td><td>Crea una ruta estática completamente especificada porque especifica la salida y dirección IPv6 de salto siguiente.</td></tr>
+<tr><td>distance</td><td>Comando opcional que se puede utilizar para asignar un valor administrativo de distancia entre 1 y 255.<br>Suele utilizarse para configurar una ruta estática flotante al establecer una distancia administrativa mayor que una ruta dinámica predeterminada.</td></tr>
+</tbody></table>
+</div>
+<p><strong>Nota</strong>: El ipv6 unicast-routing comando de configuración global debe configurarse para que habilite al router para que reenvíe paquetes IPv6.</p>
+<h2 id="topología-dual-stack"><a class="header" href="#topología-dual-stack">Topología Dual-Stack</a></h2>
+<p>En la figura, se ve una topología de red dual-stack. Actualmente, no hay rutas estáticas configuradas para IPv4 o IPv6.</p>
+<p><img src="image.png" alt="alt text" /></p>
+<h3 id="iniciando-tablas-de-enrutamiento-ipv4"><a class="header" href="#iniciando-tablas-de-enrutamiento-ipv4">Iniciando tablas de enrutamiento IPv4</a></h3>
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Tab1')">Tabla de routing<br/> IPv4 del R1</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab2')">Tabla de routing <br/>IPv4 del R2</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab3')">Tabla de routing <br/>IPv4 del R3</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab4')">R1 puede hacerle<br/> ping a R2</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab5')">R1 puede hacerle<br/> ping a LAN R3</button>
+</div>
+<div id="Tab1" class="tabcontent">
+    <h3 id="tabla-de-enrutamiento-ipv4-del-r1"><a class="header" href="#tabla-de-enrutamiento-ipv4-del-r1">Tabla de enrutamiento IPv4 del R1</a></h3>
+<pre><code>R1# show ip route | begin Gateway
+Gateway of last resort is not set
+      172.16.0.0/16 is variably subnetted, 4 subnets, 2 masks
+C 172.16.2.0/24 is directly connected, Serial0/1/0
+L 172.16.2.1/32 is directly connected, Serial0/1/0
+C 172.16.3.0/24 is directly connected, GigabitEthernet0/0/0
+L 172.16.3.1/32 is directly connected, GigabitEthernet0/0/0
+R1#
+</code></pre>
+</div>
+<div id="Tab2" class="tabcontent">
+    <h3 id="tabla-de-enrutamiento-ipv4-del-r2"><a class="header" href="#tabla-de-enrutamiento-ipv4-del-r2">Tabla de enrutamiento IPv4 del R2</a></h3>
+<code><pre>
+R2# show ip route | begin Gateway
+Gateway of last resort is not set
+      172.16.0.0/16 is variably subnetted, 4 subnets, 2 masks
+C 172.16.1.0/24 is directly connected, GigabitEthernet0/0/0
+L 172.16.1.1/32 is directly connected, GigabitEthernet0/0/0
+C 172.16.2.0/24 is directly connected, Serial0/1/0
+L 172.16.2.2/32 is directly connected, Serial0/1/0
+      192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks
+C 192.168.1.0/24 is directly connected, Serial0/1/1
+L 192.168.1.2/32 is directly connected, Serial0/1/1
+R2#
+</code></pre>
+</div>
+<div id="Tab3" class="tabcontent">
+    <h3 id="tabla-de-enrutamiento-ipv4-del-r3"><a class="header" href="#tabla-de-enrutamiento-ipv4-del-r3">Tabla de enrutamiento IPv4 del R3</a></h3>
+<p><code><pre>
+R3# show ip route | begin Gateway
+Gateway of last resort is not set
+192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks
+C 192.168.1.0/24 está conectado directamente, Serial0/1/1
+L 192.168.1.1/32 is directly connected, Serial0/1/1
+192.168.2.0/24 is variably subnetted, 2 subnets, 2 masks
+C 192.168.2.0/24 is directly connected, GigabitEthernet0/0/0
+L 192.168.2.1/32 is directly connected, GigabitEthernet0/0/0
+R3#
+</code></pre></p>
+</div>
+<div id="Tab4" class="tabcontent">
+    <h3 id="r1-puede-hacerle-ping-a-r2"><a class="header" href="#r1-puede-hacerle-ping-a-r2">R1 puede hacerle ping a R2</a></h3>
+    <p>
+    Ninguno de los routers tiene conocimiento de las redes que están fuera de las interfaces conectadas directamente. Esto significa que cada router solo puede llegar a redes conectadas directamente, como se demuestra en las siguientes pruebas de ping.</p>
+    <p>  Un ping de R1 a la interfaz serial 0/1/0 de R2 debe tener éxito porque es una red conectada directamente.</p>
+<pre><code>R1# ping 172.16.2.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.16.2.2, timeout is 2 seconds:
+!!!!!
+</code></pre>
+</div>
+<div id="Tab5" class="tabcontent">
+    <h3 id="r1-puede-hacerle-ping-a-lan-r3"><a class="header" href="#r1-puede-hacerle-ping-a-lan-r3">R1 puede hacerle ping a LAN R3</a></h3>
+    <p>Sin embargo, un ping del R1 a la LAN del R3 debe fallar porque R1 no tiene una entrada en su tabla de routing para la red LAN del R3.</p>
+<pre><code>
+R1# ping 192.168.2.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.2.1, timeout is 2 seconds:
+.....
+Success rate is 0 percent (0/5)
+</code></pre>
+</div>
+<h3 id="inicio-de-tablas-de-enrutamiento-de-ipv6"><a class="header" href="#inicio-de-tablas-de-enrutamiento-de-ipv6">Inicio de tablas de enrutamiento de IPv6</a></h3>
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Tab2_1')">Tabla de routing<br/> IPv6 del R1</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab2_2')">Tabla de routing <br/>IPv6 del R2</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab2_3')">Tabla de routing <br/>IPv6 del R3</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab2_4')">R1 puede hacerle<br/> ping a R2</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab2_5')">R1 puede hacerle<br/> ping a LAN R3</button>
+</div>
+<div id="Tab2_1" class="tabcontent">
+    <h3 id="tabla-de-enrutamiento-ipv6-del-r1"><a class="header" href="#tabla-de-enrutamiento-ipv6-del-r1">Tabla de enrutamiento IPv6 del R1</a></h3>
+<p>R1# show ipv6 route | begin C
+C 2001:DB8:ACAD:2::/64 [0/0]
+a través de Serial0/1/0, conectado directamente
+L 2001:DB8:ACAD:2::1/128 [0/0]
+a través de Serial0/1/0, recibir
+C 2001:DB8:ACAD:3: :/64 [0/0]
+a través de GigabiteThernet0/0/0, conectado directamente
+L 2001:DB8:ACAD:3: :1/128 [0/0]
+a través de GigabiteThernet0/0/0, recibir
+L FF00::/8 [0/0]
+via Null0, receive
+R1#</p>
+</div>
+<div id="Tab2_2" class="tabcontent">
+    <h3 id="tabla-de-enrutamiento-ipv6-del-r2"><a class="header" href="#tabla-de-enrutamiento-ipv6-del-r2">Tabla de enrutamiento IPv6 del R2</a></h3>
+<code><pre>
+R2# show ipv6 route | begin C 
+C 2001:DB8:ACAD:1::/64 [0/0]
+     a través de GigabiteThernet0/0/0, conectado directamente
+L 2001:DB8:ACAD:1::1/128 [0/0]
+     a través de GigabiteThernet0/0/0, recibir
+C 2001:DB8:ACAD:2::/64 [0/0]
+     a través de Serial0/1/0, conectado directamente
+L 2001:DB8:ACAD:2::2/128 [0/0]
+     a través de Serial0/1/0, recibir
+C 2001:DB8:CAFE:1: :/64 [0/0]
+     via Serial0/1/1, directly connected
+L 2001:DB8:CAFE:1: :2/128 [0/0]
+     via Serial0/1/1, receive
+L FF00::/8 [0/0]
+     via Null0, receive
+R2#
+</code></pre>
+</div>
+<div id="Tab2_3" class="tabcontent">
+    <h3 id="tabla-de-enrutamiento-ipv6-del-r3"><a class="header" href="#tabla-de-enrutamiento-ipv6-del-r3">Tabla de enrutamiento IPv6 del R3</a></h3>
+<p><code><pre>
+R3# show ipv6 route | begin C
+C 2001:DB8:CAFE:1::/64 [0/0]
+via Serial0/1/1, conectado directamente
+L 2001:DB8:CAFE:1: :1/128 [0/0]
+via Serial0/1/1, receive
+C 2001:DB8:CAFE:2: :/64 [0/0]
+a través de GigabiteThernet0/0/0, conectado directamente
+L 2001:DB8:CAFE:2: :1/128 [0/0]
+a través de GigabiteThernet0/0/0, recibir
+L FF00::/8 [0/0]
+via Null0, receive
+R3#
+</code></pre></p>
+</div>
+<div id="Tab2_4" class="tabcontent">
+    <h3 id="r1-puede-hacerle-ping-a-r2-1"><a class="header" href="#r1-puede-hacerle-ping-a-r2-1">R1 puede hacerle ping a R2</a></h3>
+    <p>Ninguno de los routers tiene conocimiento de las redes que están fuera de las interfaces conectadas directamente.</p>
+    <p> Un ping de R1 a la interfaz serial 0/1/0 en R2 debería tener éxito.</p>
+<p>R1# ping 2001:db8:acad:2: :2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 2001:DB8:ACAD:2::2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 2/2/3 ms</p>
+</div>
+<div id="Tab2_5" class="tabcontent">
+    <h3 id="r1-no-puede-hacerle-ping-a-lan-r3"><a class="header" href="#r1-no-puede-hacerle-ping-a-lan-r3">R1 no puede hacerle ping a LAN R3</a></h3>
+    <p>Sin embargo, a ping a la LAN R3 no tiene éxito. Esto se debe a que el R1 no tiene una entrada en su tabla de routing para esa red.</p>
+<pre><code>
+R1# ping 2001:DB8:Cafe:2: :1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 2001:DB8:CAFE:2::1, timeout is 2 seconds:
+% No valid route for destination
+Success rate is 0 percent (0/1)
+</code></pre>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Networking/Static_and_Dynamic_Routing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../Networking/routing/Configure_IP_Static_Routes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Networking/Static_and_Dynamic_Routing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../Networking/routing/Configure_IP_Static_Routes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../theme/additional.js"></script>
+
+
+    </div>
+    </body>
+</html>
