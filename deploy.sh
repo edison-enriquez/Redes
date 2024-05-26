@@ -21,7 +21,7 @@ git status
 git branch -m main
 
 # Empujar los cambios a la rama principal en GitHub
-git push origin main
+git push github main
 
 # Añadir el worktree para gh-pages
 git worktree add $TEMP_BOOK_DIR gh-pages
@@ -45,7 +45,7 @@ git add -A
 git commit -m "update"
 
 # Empujar los cambios a la rama gh-pages en GitHub
-git push origin gh-pages
+git push github gh-pages
 
 # Regresar al directorio anterior
 popd
