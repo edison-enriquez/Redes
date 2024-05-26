@@ -40,3 +40,15 @@ La tabla indica las tareas para finalizar la configuración del pool de DHCPv4.
 El conjunto de direcciones y el router de gateway predeterminado deben estar configurados. Use la network instrucción para definir el rango de direcciones disponibles. Use el comando `default-router`  para definir el router de gateway predeterminado. Normalmente, el gateway es la interfaz LAN del router más cercano a los dispositivos clientes. Se requiere un gateway, pero se pueden indicar hasta ocho direcciones si hay varios gateways.
 <br><br>
 Otros comandos del pool de DHCPv4 son optativos. Por ejemplo, la dirección IPv4 del servidor DNS que está disponible para un cliente DHCPv4 se configura mediante el comando `dns-server`. El comando domain-name se utiliza para definir el nombre de dominio. La duración del arrendamiento de DHCPv4 puede modificarse mediante el comando lease. El valor de arrendamiento predeterminado es un día. El comando netbios-name-server se utiliza para definir el servidor WINS con NetBIOS.
+
+|Tarea	|Comando de IOS|
+|--|--|
+|Definir el conjunto de direcciones.	|`network network-number [mask | / prefix-length]`|
+|Definir el router o gateway predeterminado.|`default-router address [ address2….address8]`
+|Definir un servidor DNS.	|`dns-server address [ address2…address8]`
+|Definir el nombre de dominio.	|`domain-name domain`
+|Definir la duración de la concesión DHCP.	|`lease {days [hours [ minutes]] | infinite}`
+|Definir el servidor WINS con NetBIOS.	|`netbios-name-server address [ address2…address8]`
+
+
+**Nota:** Microsoft recomienda no implementar WINS, en su lugar configurar DNS para la resolución de |nombres de Windows y retirar WINS.
