@@ -47,3 +47,23 @@ Muchas redes empresariales utilizan varios servidores de DHCPv4. El mensaje DHCP
 Al recibir el mensaje DHCPREQUEST, el servidor verifica la información del arrendamiento con un ping ICMP a esa dirección para asegurarse de que no esté en uso, crea una nueva entrada ARP para el arrendamiento del cliente y responde con un mensaje DHCPACK. El mensaje DHCPACK es un duplicado del mensaje DHCPOFFER, a excepción de un cambio en el campo de tipo de mensaje. Cuando el cliente recibe el mensaje DHCPACK, registra la información de configuración y realiza una búsqueda de ARP para la dirección asignada. Si no hay respuesta al ARP, el cliente sabe que la dirección IPv4 es válida y comienza a utilizarla como propia.
 
 <img src="./img/dhcp_4.png" alt="dhcp" border="0">
+
+### Preguntas - DHCPv4 Conceptos
+
+1. ¿Qué mensaje envía un cliente DHCPv4 para iniciar el proceso de obtención de la concesión?
+- [ ] DHCPDISCOVER
+- [ ] DCHPOFFER
+- [ ] DHCPREQUEST
+- [ ] DHCPACK
+
+2. ¿Qué dos mensajes DHCPv4 son enviados por el servidor en el proceso de obtención de un arrendamiento? (Escoja dos opciones).
+- [ ] DHCPDISCOVER
+- [ ] DCHPOFFER
+- [ ] DHCPREQUEST
+- [ ] DHCPACK
+
+3. ¿Qué dos mensajes DHCPv4 se utilizan en el proceso de renovación de un arrendamiento? (Escoja dos opciones).
+- [ ] DHCPDISCOVER
+- [ ] DCHPOFFER
+- [ ] DHCPREQUEST
+- [ ] DHCPACK
