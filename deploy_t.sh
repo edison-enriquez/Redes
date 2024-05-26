@@ -1,5 +1,5 @@
 #!/bin/bash
-
+mdbook build
 # Ruta temporal para el book
 TEMP_BOOK_DIR="/tmp/book"
 

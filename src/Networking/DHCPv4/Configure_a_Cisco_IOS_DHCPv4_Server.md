@@ -10,9 +10,9 @@ Ahora usted tiene una comprensión básica de cómo funciona DHCPv4 y cómo pued
 
 Utilice los siguientes pasos para configurar un servidor DHCPv4 del IOS de Cisco:
 
-- Paso 1. Excluir direcciones IPv4
-- Paso 2. Defina un nombre de grupo DHCPv4.
-- Paso 3. Configure el grupo DHCPv4.
+- **Paso 1.** Excluir direcciones IPv4
+- **Paso 2.** Defina un nombre de grupo DHCPv4.
+- **Paso 3.** Configure el grupo DHCPv4.
 
 ### Paso 1. Excluir direcciones IPv4
 
