@@ -220,6 +220,47 @@ Los clientes arriendan la información del servidor durante un período definido
 </ol>
 <p>Al recibir el mensaje DHCPREQUEST, el servidor verifica la información del arrendamiento con un ping ICMP a esa dirección para asegurarse de que no esté en uso, crea una nueva entrada ARP para el arrendamiento del cliente y responde con un mensaje DHCPACK. El mensaje DHCPACK es un duplicado del mensaje DHCPOFFER, a excepción de un cambio en el campo de tipo de mensaje. Cuando el cliente recibe el mensaje DHCPACK, registra la información de configuración y realiza una búsqueda de ARP para la dirección asignada. Si no hay respuesta al ARP, el cliente sabe que la dirección IPv4 es válida y comienza a utilizarla como propia.</p>
 <img src="./img/dhcp_4.png" alt="dhcp" border="0">
+<h3 id="preguntas---dhcpv4-conceptos"><a class="header" href="#preguntas---dhcpv4-conceptos">Preguntas - DHCPv4 Conceptos</a></h3>
+<ol>
+<li>¿Qué mensaje envía un cliente DHCPv4 para iniciar el proceso de obtención de la concesión?</li>
+</ol>
+<ul>
+<li><input disabled="" type="checkbox"/>
+DHCPDISCOVER</li>
+<li><input disabled="" type="checkbox"/>
+DCHPOFFER</li>
+<li><input disabled="" type="checkbox"/>
+DHCPREQUEST</li>
+<li><input disabled="" type="checkbox"/>
+DHCPACK</li>
+</ul>
+<ol start="2">
+<li>¿Qué dos mensajes DHCPv4 son enviados por el servidor en el proceso de obtención de un arrendamiento? (Escoja dos opciones).</li>
+</ol>
+<ul>
+<li><input disabled="" type="checkbox"/>
+DHCPDISCOVER</li>
+<li><input disabled="" type="checkbox"/>
+DCHPOFFER</li>
+<li><input disabled="" type="checkbox"/>
+DHCPREQUEST</li>
+<li><input disabled="" type="checkbox"/>
+DHCPACK</li>
+</ul>
+<ol start="3">
+<li>¿Qué dos mensajes DHCPv4 se utilizan en el proceso de renovación de un arrendamiento? (Escoja dos opciones).</li>
+</ol>
+<ul>
+<li><input disabled="" type="checkbox"/>
+DHCPDISCOVER</li>
+<li><input disabled="" type="checkbox"/>
+DCHPOFFER</li>
+<li><input disabled="" type="checkbox"/>
+DHCPREQUEST</li>
+<li><input disabled="" type="checkbox"/>
+DHCPACK</li>
+</ul>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
