@@ -15,7 +15,7 @@
         - [Configure un servidor DHCPv4 del IOS de Cisco](./Networking/DHCPv4/Configure_a_Cisco_IOS_DHCPv4_Server.md)
         - [Configurar un router como cliente DHCPv4](./Networking/DHCPv4/Configure_a_DHCPv4_Client.md)
         - [Practica DHCPv4](./Networking/DHCPv4/DHCPv4_Module_Practice.md)
-    - [Conceptos de enrutamient0](./Networking/routing/Routing_Concepts.md)
+    - [Conceptos de enrutamiento](./Networking/routing/Routing_Concepts.md)
         - [Determinación de trayecto](./Networking/routing/Path_Determination.md)
         - [Reenvío de paquetes](./Networking/routing/Packet_Forwarding.md)
         - [Configuración básica de un router](./Networking/routing/Basic_Router_Configuration_Review.md)
