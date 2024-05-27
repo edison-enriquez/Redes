@@ -11,7 +11,7 @@ La figura muestra cómo un router determina primero la mejor ruta y, a continuac
 4. El router encapsula el paquete en una nueva trama de enlace de datos y lo reenvía por la interfaz de salida. El destino podría ser un dispositivo conectado a la red o un router de siguiente salto.
 5. Sin embargo, si no hay ninguna entrada de ruta coincidente, el paquete se elimina.
 
-![alt text](image-1)
+![alt text](routing_1.png)
 
 ### 1. Reenvía el paquete a un dispositivo en una red conectada directamente
 Si la entrada de ruta indica que la interfaz de salida es una red conectada directamente, esto significa que la dirección IP de destino del paquete pertenece a un dispositivo de la red conectada directamente. Por lo tanto, el paquete se puede reenviar directamente al dispositivo de destino. El dispositivo de destino suele ser un dispositivo final en una LAN Ethernet, lo que significa que el paquete debe estar encapsulado en una trama Ethernet.
@@ -26,4 +26,10 @@ Si la entrada de ruta indica que la dirección IP de destino está en una red re
 
 Si el router de reenvío y el router de siguiente salto se encuentran en una red Ethernet, se producirá un proceso similar (ARP e ICMPv6 Neighbor Discovery) para determinar la dirección MAC de destino del paquete como se describió anteriormente. La diferencia es que el router buscará la dirección IP del router de salto siguiente en su tabla ARP o caché de vecino, en lugar de la dirección IP de destino del paquete.
 
-Nota: Este proceso variará para otros tipos de redes de capa 2.
+**Nota:** Este proceso variará para otros tipos de redes de capa 2.
+
+### 3. Descarta el paquete - No coincide en la tabla de enrutamiento
+Si no hay ninguna coincidencia entre la dirección IP de destino y un prefijo en la tabla de enrutamiento, y si no hay una ruta predeterminada, se descartará el paquete.
+
+### Reenvío de paquetes
+Una responsabilidad principal de la función de switching es la de encapsular los paquetes en el tipo de marco de enlace de datos correcto para el enlace de datos de salida. Por ejemplo, el formato de marco de vínculo de datos para un vínculo serie podría ser el protocolo punto a punto (PPP), el protocolo de control de enlace de datos de alto nivel (HDLC) o algún otro protocolo de capa 2.
