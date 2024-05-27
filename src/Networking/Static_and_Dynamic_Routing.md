@@ -106,6 +106,11 @@ En la animación de la ilustración, se destaca cómo la ruta puede ser diferent
   <source src="./routing/video/Mejor_Camino.mov" type="video/quicktime">
   Tu navegador no soporta el elemento de video.
 </video>
+<video width="320" height="240" controls>
+  <source src="./routing/video/Mejor_Camino.mp4" type="video/mp4">
+  Tu navegador no soporta el elemento de video.
+</video>
+
 
 ## Balance de carga
 <br><br>
@@ -125,4 +130,6 @@ En el video se proporciona un ejemplo de balanceo de carga de mismo costo.
   <source src="./routing/video/balance_de_carga.mov" type="video/quicktime">
   Tu navegador no soporta el elemento de video.
 </video>
+
+
 
