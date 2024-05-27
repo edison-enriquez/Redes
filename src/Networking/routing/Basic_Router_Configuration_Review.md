@@ -348,5 +348,5 @@ R1#
 
 Los routers R1 y R2 tienen dos LAN cada uno. R1 ya está configurado. Su tarea es configurar el direccionamiento adecuado para R2 y verificar la conectividad entre las LAN.
 
-- ![Configuración basica de un Router](./labs/-packet-tracer---configure-dhcpv4_es-XL.pdf)
-- ![Lab Packet Tracer - Configuración basica de un Router](./labs/-packet-tracer---configure-dhcpv4_es-XL.pka)
+- [Configuración basica de un Router](./labs/-packet-tracer---configure-dhcpv4_es-XL.pdf)
+- [Lab Packet Tracer - Configuración basica de un Router](./labs/-packet-tracer---configure-dhcpv4_es-XL.pka)
