@@ -188,7 +188,7 @@ Ahora que el router ha determinado la mejor ruta para un paquete en función de 
 <li>El router encapsula el paquete en una nueva trama de enlace de datos y lo reenvía por la interfaz de salida. El destino podría ser un dispositivo conectado a la red o un router de siguiente salto.</li>
 <li>Sin embargo, si no hay ninguna entrada de ruta coincidente, el paquete se elimina.</li>
 </ol>
-<p><img src="routing_1.png" alt="alt text" /></p>
+<p><img src="./img/routing_1.png" alt="alt text" /></p>
 <h3 id="1-reenvía-el-paquete-a-un-dispositivo-en-una-red-conectada-directamente"><a class="header" href="#1-reenvía-el-paquete-a-un-dispositivo-en-una-red-conectada-directamente">1. Reenvía el paquete a un dispositivo en una red conectada directamente</a></h3>
 <p>Si la entrada de ruta indica que la interfaz de salida es una red conectada directamente, esto significa que la dirección IP de destino del paquete pertenece a un dispositivo de la red conectada directamente. Por lo tanto, el paquete se puede reenviar directamente al dispositivo de destino. El dispositivo de destino suele ser un dispositivo final en una LAN Ethernet, lo que significa que el paquete debe estar encapsulado en una trama Ethernet.</p>
 <p>Para encapsular el paquete en la trama Ethernet, el router necesita determinar la dirección MAC de destino asociada a la dirección IP de destino del paquete. El proceso varía según si el paquete es un paquete IPv4 o IPv6:</p>
@@ -204,6 +204,24 @@ Ahora que el router ha determinado la mejor ruta para un paquete en función de 
 <p>Si no hay ninguna coincidencia entre la dirección IP de destino y un prefijo en la tabla de enrutamiento, y si no hay una ruta predeterminada, se descartará el paquete.</p>
 <h3 id="reenvío-de-paquetes-1"><a class="header" href="#reenvío-de-paquetes-1">Reenvío de paquetes</a></h3>
 <p>Una responsabilidad principal de la función de switching es la de encapsular los paquetes en el tipo de marco de enlace de datos correcto para el enlace de datos de salida. Por ejemplo, el formato de marco de vínculo de datos para un vínculo serie podría ser el protocolo punto a punto (PPP), el protocolo de control de enlace de datos de alto nivel (HDLC) o algún otro protocolo de capa 2.</p>
+<p>Mecanismos de reenvío de paquetes
+Como se menciono anteriormente, la responsabilidad principal de la función de reenvío de paquetes es la de encapsular los paquetes en el tipo de marco de enlace de datos correcto para la interfaz de salida. Cuanto más eficientemente un router pueda realizar esta tarea, más rápido podrá reenviar paquetes por el router. Los routers admiten tres mecanismos de reenvío de paquetes:</p>
+<ul>
+<li>Switching de procesos</li>
+<li>Switching rápido</li>
+<li>Cisco Express Forwarding (CEF)</li>
+</ul>
+<h3 id="1-conmutación-de-procesos-process-switching"><a class="header" href="#1-conmutación-de-procesos-process-switching">1. Conmutación de procesos (Process Switching)</a></h3>
+<p>Un mecanismo de reenvío de paquetes más antiguo que todavía está disponible para routers Cisco. Cuando un paquete llega a una interfaz, se reenvía al plano de control, donde la CPU hace coincidir la dirección de destino con una entrada de la tabla de routing y, a continuación, determina la interfaz de salida y reenvía el paquete. Es importante comprender que el router hace esto con cada paquete, incluso si el destino es el mismo para un flujo de paquetes. Este mecanismo de switching de procesos es muy lento y rara vez se implementa en las redes modernas. Compare esto con el switching rápido.</p>
+<p><img src="./img/Process%20Switching.png" alt="alt text" /></p>
+<h3 id="2-conmutación-rápidafast-switching"><a class="header" href="#2-conmutación-rápidafast-switching">2. Conmutación rápida(Fast Switching)</a></h3>
+<p>La conmutación rápida es otro mecanismo de reenvío de paquetes más antiguo que fue el sucesor de la conmutación de procesos. Fast switching usa una memoria caché de switching rápido para almacenar la información de siguiente salto. Cuando un paquete llega a una interfaz, se reenvía al plano de control, donde la CPU busca una coincidencia en la caché de switching rápido. Si no encuentra ninguna, se aplica el switching de procesos al paquete, y este se reenvía a la interfaz de salida. La información de flujo del paquete también se almacena en la caché de switching rápido. Si otro paquete con el mismo destino llega a una interfaz, se vuelve a utilizar la información de siguiente salto de la caché sin intervención de la CPU.</p>
+<p>Con el switching rápido, observe que el switching de procesos se aplica solo al primer paquete de un flujo, el cual se agrega a la caché de switching rápido. Los cuatro paquetes siguientes se procesan rápidamente según la información de la caché de switching rápido.</p>
+<p><img src="./img/Fast%20Switching.png" alt="alt text" /></p>
+<h3 id="3-cef"><a class="header" href="#3-cef">3. CEF</a></h3>
+<p>CEF es el mecanismo de reenvío de paquetes más reciente y predeterminado del IOS de Cisco. Al igual que el switching rápido, CEF arma una base de información de reenvío (FIB) y una tabla de adyacencia. Sin embargo, las entradas de la tabla no se activan por los paquetes como en el switching rápido, sino que se activan por los cambios, como cuando se modifica un elemento en la topología de la red. Por lo tanto, cuando se converge una red, la FIB y las tablas de adyacencia contienen toda la información que el router debe tener en cuenta al reenviar un paquete. Cisco Express Forwarding es el mecanismo de reenvío más rápido y la opción más utilizada en los routers Cisco y en los Multilayer Switches.</p>
+<p>CEF crea la FIB y las tablas de adyacencia una vez que se converge la red. Los cinco paquetes se procesan rápidamente en el plano de datos.</p>
+<p><img src="./img/routing_CEF.png" alt="alt text" /></p>
 
                     </main>
 
