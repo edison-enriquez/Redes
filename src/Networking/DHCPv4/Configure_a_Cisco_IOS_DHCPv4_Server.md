@@ -193,7 +193,7 @@ En una red jerárquica compleja, los servidores empresariales suelen estar ubica
 En la figura, la PC1 intenta adquirir una dirección IPv4 de un servidor de DHCPv4 mediante un mensaje de difusión. En esta situación, el router R1 no está configurado como servidor de DHCPv4 y no reenvía el mensaje de difusión. Dado que el servidor de DHCPv4 está ubicado en una red diferente, la PC1 no puede recibir una dirección IP mediante DHCP. R1 debe configurarse para retransmitir mensajes DHCPv4 al servidor DHCPv4.
 <img src="./img/dhcp_server_5.png" alt="dhcp" border="0">
 
-1. ipconfig /release
+1. **`ipconfig /release`**
 
 PC1 es una computadora con Windows. El administrador de red libera toda la información de direccionamiento IPv4 actual mediante el comando ipconfig /release. Observe que se libera la dirección IPv4 y ninguna dirección aparece.
 
@@ -205,7 +205,7 @@ Ethernet adapter Ethernet0:
    Default Gateway . . . . . . . . . :  
 ```
 
-2. ipconfig /renew
+2. **`ipconfig /renew`**
 
 A continuación, el administrador de red intenta renovar la información de direccionamiento IPv4 con el comando ipconfig /renew. Este comando hace que la PC1 transmita por difusión un mensaje DHCPDISCOVER. En el resultado se muestra que la PC1 no puede ubicar el servidor de DHCPv4. Dado que los routers no reenvían mensajes de difusión, la solicitud no es correcta.
 
@@ -217,7 +217,7 @@ Configuración IP de Windows
 Error al renovar la interfaz Ethernet0: no se puede conectar al servidor DHCP. Expiró la solicitud.
 ```
 
-3. ip helper-address
+3. **`ip helper-address`**
 
 Una mejor solución es configurar R1 con el comando ip helper-address address interface configuration. Esto hará que R1 retransmita transmisiones DHCPv4 al servidor DHCPv4. Como se muestra en el ejemplo, la interfaz en R1 que recibe la difusión desde PC1 está configurada para retransmitir la dirección DHCPv4 al servidor DHCPv4 en 192.168.11.6.
 
@@ -228,7 +228,7 @@ R1(config-if)# finalizar
 R1#
 ```
 
-4. show ip interface
+4. **`show ip interface`**
 
 Cuando se configura el R1 como agente de retransmisión DHCPv4, acepta solicitudes de difusión para el servicio DHCPv4 y, a continuación, reenvía dichas solicitudes en forma de unidifusión a la dirección IPv4 192.168.11.6. El administrador de red puede utilizar el comando show ip interface para verificar la configuración.
 
@@ -243,7 +243,7 @@ GigabitEthernet0/0/0 is up, line protocol is up
 (resultado omitido)
 ```
 
-5. ipconfig /all
+5. **ipconfig /all**
 
 Como se muestra en la salida, PC1 ahora puede adquirir una dirección IPv4 del servidor DHCPv4 como se ha verificado con el ipconfig /all comando .
 
