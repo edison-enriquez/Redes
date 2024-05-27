@@ -76,7 +76,7 @@ Los componentes principales de los protocolos de routing dinámico incluyen los 
 <br><br>
 
 <video width="320" height="240" controls>
-  <source src="./routing/video/routing_dinamic.mov" type="video/quicktime">
+  <source src="./routing/video/routing_dinamic.mp4" type="video/mp4">
   Tu navegador no soporta el elemento de video.
 </video>
 
@@ -101,11 +101,6 @@ Se permite un máximo de 15 saltos.|
 
 En la animación de la ilustración, se destaca cómo la ruta puede ser diferente según la métrica que se utiliza. Si falla la mejor ruta, el protocolo de enrutamiento dinámico seleccionará automáticamente una nueva mejor ruta si existe
 
-
-<video width="320" height="240" controls>
-  <source src="./routing/video/Mejor_Camino.mov" type="video/quicktime">
-  Tu navegador no soporta el elemento de video.
-</video>
 <video width="320" height="240" controls>
   <source src="./routing/video/Mejor_Camino.mp4" type="video/mp4">
   Tu navegador no soporta el elemento de video.

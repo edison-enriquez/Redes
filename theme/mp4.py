@@ -1,9 +1,9 @@
 from moviepy.editor import VideoFileClip
 
 # Ruta al archivo de entrada .mov
-input_file = "./src/Networking/routing/video/Mejor_Camino.mov"
+input_file = "./src/Networking/routing/video/video_routing_1.mov"
 # Ruta al archivo de salida .mp4
-output_file = "./src/Networking/routing/video/Mejor_Camino.mp4"
+output_file = "./src/Networking/routing/video/video_routing_1.mp4"
 
 # Cargar el video .mov
 clip = VideoFileClip(input_file)
