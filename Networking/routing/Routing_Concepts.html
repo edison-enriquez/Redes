@@ -185,10 +185,7 @@
 <p>Las funciones principales de un router son determinar la mejor ruta para reenviar paquetes basándose en la información de su tabla de enrutamiento, y reenviar paquetes hacia su destino.</p>
 <h3 id="ejemplo-de-funciones-del-router"><a class="header" href="#ejemplo-de-funciones-del-router">Ejemplo de Funciones del router</a></h3>
 <p>El router usa su tabla de routing para encontrar la mejor ruta para reenviar un paquete. Haga clic en Reproducir en la animación de la ilustración, para seguir un paquete desde la computadora de origen hasta la computadora de destino. Observe cómo tanto R1 como R2 utilizan sus respectivas tablas de enrutamiento IP para determinar primero la mejor ruta y, a continuación, reenviar el paquete.</p>
-<video width="320" height="240" controls>
-  <source src="./video/video_routing_1.mov" type="video/mp4">
-  Tu navegador no soporta el elemento de video.
-</video>
+<p><a href="./video/video_routing_1.mov"><img src="" alt="Video" /></a></p>
 <h2 id="mejor-ruta-es-igual-a-la-coincidencia-más-larga"><a class="header" href="#mejor-ruta-es-igual-a-la-coincidencia-más-larga">Mejor ruta es igual a la coincidencia más larga</a></h2>
 <p>¿Qué significa que el router deba encontrar la mejor coincidencia en la tabla de routing? La mejor ruta de la tabla de enrutamiento también se conoce como la coincidencia más larga. La coincidencia más larga es un proceso que el router utiliza para encontrar una coincidencia entre la dirección IP de destino del paquete y una entrada de enrutamiento en la tabla de enrutamiento.</p>
 <p>La tabla de enrutamiento contiene entradas de ruta que consisten en un prefijo (dirección de red) y una longitud de prefijo. Para que haya una coincidencia entre la dirección IPv4 de destino de un paquete y una ruta en la tabla de routing, una cantidad mínima de los bits del extremo izquierdo deben coincidir entre la dirección IPv4 del paquete y la ruta en la tabla de routing. La máscara de subred de la ruta en la tabla de routing se utiliza para determinar la cantidad mínima de bits del extremo izquierdo que deben coincidir. Recuerde que un paquete IP sólo contiene la dirección IP de destino y no la longitud del prefijo.</p>
