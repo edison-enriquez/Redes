@@ -122,9 +122,8 @@ Equilibrio de carga de igual costo se implementa automáticamente mediante proto
 En el video se proporciona un ejemplo de balanceo de carga de mismo costo.
 
 <video width="320" height="240" controls>
-  <source src="./routing/video/balance_de_carga.mov" type="video/quicktime">
+  <source src="./routing/video/balance_de_carga.mp4" type="video/mp4">
   Tu navegador no soporta el elemento de video.
 </video>
-
 
 
