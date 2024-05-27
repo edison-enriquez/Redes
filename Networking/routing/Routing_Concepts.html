@@ -228,6 +228,11 @@ En la tabla, un paquete IPv6 tiene la dirección IPv6 de destino 2001:db8:c000: 
 <p>Una ruta predeterminada específica un router de salto siguiente que se utilizará cuando la tabla de enrutamiento no contiene una ruta específica que coincida con la dirección IP de destino. La ruta predeterminada puede configurarse manualmente como ruta estática o puede introducirla el protocolo de routing.</p>
 <p>Una ruta predeterminada sobre IPv4 tiene una entrada de ruta de 0.0.0.0/0 y una ruta predeterminada sobre IPv6 tiene una entrada de ruta de: :/0. La longitud del prefijo /0 indica que cero bits o ningún bit deben coincidir con la dirección IP de destino para que se utilice esta entrada de ruta. Si no hay rutas con una coincidencia más larga, más de 0 bits, entonces la ruta predeterminada se utiliza para reenviar el paquete. A veces, la ruta predeterminada se conoce como una puerta de enlace de último recurso.</p>
 <h3 id="preguntas"><a class="header" href="#preguntas">Preguntas</a></h3>
+<ol>
+<li>¿Qué tabla utiliza un router para determinar cómo reenviar un paquete IP?</li>
+<li>¿Qué acción tomará un router en un paquete con una dirección IP de destino que se encuentra en una red remota?</li>
+<li>Qué se utiliza para determinar el número mínimo de bits de extrema izquierda que deben coincidir entre el prefijo en la entrada de ruta y la dirección IP de destino.</li>
+</ol>
 
                     </main>
 
