@@ -16,7 +16,6 @@
         - [Configurar un router como cliente DHCPv4](./Networking/DHCPv4/Configure_a_DHCPv4_Client.md)
         - [Practica DHCPv4](./Networking/DHCPv4/DHCPv4_Module_Practice.md)
     - [Conceptos de enrutamiento](./Networking/routing/Routing_Concepts.md)
-        - [Determinación de trayecto](./Networking/routing/Path_Determination.md)
         - [Reenvío de paquetes](./Networking/routing/Packet_Forwarding.md)
         - [Configuración básica de un router](./Networking/routing/Basic_Router_Configuration_Review.md)
         - [Tabla de routing IP](./Networking/routing/IP_Routing_Table.md)
