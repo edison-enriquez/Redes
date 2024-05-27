@@ -219,7 +219,28 @@ Otros comandos del pool de DHCPv4 son optativos. Por ejemplo, la dirección IPv4
 </tbody></table>
 </div>
 <p><strong>Nota:</strong> Microsoft recomienda no implementar WINS, en su lugar configurar DNS para la resolución de |nombres de Windows y retirar WINS.</p>
-
+<h2 id="ejemplo-de-configuración"><a class="header" href="#ejemplo-de-configuración">Ejemplo de configuración</a></h2>
+<p>La topología para el ejemplo de configuración se muestra en la figura.
+<img src="./img/dhcp_server_2.png" alt="dhcp" border="0">
+El ejemplo muestra la configuración para convertir a R1 en un servidor DHCPv4 para la LAN 192.168.10.0/24.</p>
+<pre><code class="language-bash">R1(config)# ip dhcp excluded-address 192.168.10.1 192.168.10.9
+R1(config)# ip dhcp excluded-address 192.168.10.254
+R1(config)# ip dhcp pool LAN-POOL-1
+R1(dhcp-config)# network 192.168.10.0 255.255.255.0
+R1(dhcp-config)# default-router 192.168.10.1
+R1(dhcp-config)# dns-server 192.168.11.5
+R1(dhcp-config)# domain-name example.com
+R1(dhcp-config)# end
+R1#
+</code></pre>
+<h3 id="comandos-de-verificación-dhcpv4"><a class="header" href="#comandos-de-verificación-dhcpv4">Comandos de verificación DHCPv4</a></h3>
+<p>Utilice los comandos de la tabla para verificar que el servidor DHCPv4 del IOS de Cisco esté funcionando.</p>
+<div class="table-wrapper"><table><thead><tr><th>Comando</th><th>Descripción</th></tr></thead><tbody>
+<tr><td>`show running-config</td><td>section dhcp`</td></tr>
+<tr><td><code>show ip dhcp binding</code></td><td>Muestra una lista de todos los enlaces de direcciones IPv4 a direcciones MAC proporcionados por el servicio DHCPv4.</td></tr>
+<tr><td><code>show ip dhcp server statistics</code></td><td>Muestra información de conteo con respecto a la cantidad de mensajes DHCPv4 que han sido enviados y recibidos.</td></tr>
+</tbody></table>
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
