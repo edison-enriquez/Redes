@@ -247,7 +247,7 @@ GigabitEthernet0/0/0 is up, line protocol is up
 
 Como se muestra en la salida, PC1 ahora puede adquirir una dirección IPv4 del servidor DHCPv4 como se ha verificado con el ipconfig /all comando .
 
-```bah
+```bash
 C:\Users\Student> ipconfig /all
 Configuración IP de Windows
   
