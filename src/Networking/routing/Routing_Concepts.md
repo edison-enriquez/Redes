@@ -13,10 +13,7 @@ Las funciones principales de un router son determinar la mejor ruta para reenvia
 ### Ejemplo de Funciones del router
 El router usa su tabla de routing para encontrar la mejor ruta para reenviar un paquete. Haga clic en Reproducir en la animación de la ilustración, para seguir un paquete desde la computadora de origen hasta la computadora de destino. Observe cómo tanto R1 como R2 utilizan sus respectivas tablas de enrutamiento IP para determinar primero la mejor ruta y, a continuación, reenviar el paquete.
 
-<video width="320" height="240" controls>
-  <source src="./video/video_routing_1.mov" type="video/mp4">
-  Tu navegador no soporta el elemento de video.
-</video>
+[![Video]()](./video/video_routing_1.mov)
 
 
 ## Mejor ruta es igual a la coincidencia más larga
