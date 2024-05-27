@@ -73,3 +73,7 @@ Una ruta predeterminada sobre IPv4 tiene una entrada de ruta de 0.0.0.0/0 y una 
 
 ### Preguntas
 
+1. ¿Qué tabla utiliza un router para determinar cómo reenviar un paquete IP?
+2. ¿Qué acción tomará un router en un paquete con una dirección IP de destino que se encuentra en una red remota?
+3. Qué se utiliza para determinar el número mínimo de bits de extrema izquierda que deben coincidir entre el prefijo en la entrada de ruta y la dirección IP de destino.
+
