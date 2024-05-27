@@ -188,7 +188,7 @@ Ahora que el router ha determinado la mejor ruta para un paquete en función de 
 <li>El router encapsula el paquete en una nueva trama de enlace de datos y lo reenvía por la interfaz de salida. El destino podría ser un dispositivo conectado a la red o un router de siguiente salto.</li>
 <li>Sin embargo, si no hay ninguna entrada de ruta coincidente, el paquete se elimina.</li>
 </ol>
-<p><img src="image-1" alt="alt text" /></p>
+<p><img src="routing_1.png" alt="alt text" /></p>
 <h3 id="1-reenvía-el-paquete-a-un-dispositivo-en-una-red-conectada-directamente"><a class="header" href="#1-reenvía-el-paquete-a-un-dispositivo-en-una-red-conectada-directamente">1. Reenvía el paquete a un dispositivo en una red conectada directamente</a></h3>
 <p>Si la entrada de ruta indica que la interfaz de salida es una red conectada directamente, esto significa que la dirección IP de destino del paquete pertenece a un dispositivo de la red conectada directamente. Por lo tanto, el paquete se puede reenviar directamente al dispositivo de destino. El dispositivo de destino suele ser un dispositivo final en una LAN Ethernet, lo que significa que el paquete debe estar encapsulado en una trama Ethernet.</p>
 <p>Para encapsular el paquete en la trama Ethernet, el router necesita determinar la dirección MAC de destino asociada a la dirección IP de destino del paquete. El proceso varía según si el paquete es un paquete IPv4 o IPv6:</p>
@@ -199,7 +199,11 @@ Ahora que el router ha determinado la mejor ruta para un paquete en función de 
 <h3 id="2-reenvía-el-paquete-a-un-router-de-salto-siguiente"><a class="header" href="#2-reenvía-el-paquete-a-un-router-de-salto-siguiente">2. Reenvía el paquete a un router de salto siguiente</a></h3>
 <p>Si la entrada de ruta indica que la dirección IP de destino está en una red remota, esto significa que la dirección IP de destino del paquete pertenece a un dispositivo de red que no está conectado directamente. Por lo tanto, el paquete debe ser reenviado a otro enrutador, específicamente a un router de siguiente salto. La dirección de salto siguiente se indica en la entrada de ruta.</p>
 <p>Si el router de reenvío y el router de siguiente salto se encuentran en una red Ethernet, se producirá un proceso similar (ARP e ICMPv6 Neighbor Discovery) para determinar la dirección MAC de destino del paquete como se describió anteriormente. La diferencia es que el router buscará la dirección IP del router de salto siguiente en su tabla ARP o caché de vecino, en lugar de la dirección IP de destino del paquete.</p>
-<p>Nota: Este proceso variará para otros tipos de redes de capa 2.</p>
+<p><strong>Nota:</strong> Este proceso variará para otros tipos de redes de capa 2.</p>
+<h3 id="3-descarta-el-paquete---no-coincide-en-la-tabla-de-enrutamiento"><a class="header" href="#3-descarta-el-paquete---no-coincide-en-la-tabla-de-enrutamiento">3. Descarta el paquete - No coincide en la tabla de enrutamiento</a></h3>
+<p>Si no hay ninguna coincidencia entre la dirección IP de destino y un prefijo en la tabla de enrutamiento, y si no hay una ruta predeterminada, se descartará el paquete.</p>
+<h3 id="reenvío-de-paquetes-1"><a class="header" href="#reenvío-de-paquetes-1">Reenvío de paquetes</a></h3>
+<p>Una responsabilidad principal de la función de switching es la de encapsular los paquetes en el tipo de marco de enlace de datos correcto para el enlace de datos de salida. Por ejemplo, el formato de marco de vínculo de datos para un vínculo serie podría ser el protocolo punto a punto (PPP), el protocolo de control de enlace de datos de alto nivel (HDLC) o algún otro protocolo de capa 2.</p>
 
                     </main>
 
